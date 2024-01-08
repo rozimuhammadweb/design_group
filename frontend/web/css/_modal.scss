@@ -1,0 +1,189 @@
+.modal-web{
+    width: 656px;
+    @include media(1100px){
+        width: 850px;
+    }
+    @include media(950px){
+        width: 700px;
+    }
+    @include media(800px){
+        width: 500px;
+        padding: 24px;
+    }
+    @include media(650px){
+        width: 330px;
+        padding: 24px;
+    }
+    padding: 50px;
+    position: fixed;
+    background: #FFFFFF;
+    z-index: -12;
+    opacity: 0;
+    top: 60%;
+    left: 50%;
+    transition: top 0.3s ease-in-out;
+    transform: translate(-50%,-50%);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    &.active{
+        top: 50%;
+        z-index: 12;
+        opacity: 1;
+    }
+    .exit{
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg{
+            width: 24px;
+            height: 24px;
+        }
+        right: 0px;
+        top: -45px;
+        cursor: pointer;
+    }
+    .txt-38{
+        color:$c00;
+        font-weight: 600;
+        text-align: center;
+    }
+    .txt-18{
+        color:$c2c;
+        margin-top: 12px;
+        font-weight: 500;
+        text-align: center;
+    }
+    .sucsess{
+        width: 170px;
+        height: 170px;
+        border-radius: 50%;
+        background: $c1c;
+        display: flex;
+        align-items:center;
+        justify-content: center;
+        svg{
+            width: 60px;
+            height: 40px;
+        }
+        margin-bottom: 30px;
+    }
+    .back-btn{
+        width: 100%;
+        margin-top: 24px;
+        background: #F0F1F4;
+    }
+    form{
+        margin-top: 6px;
+        width: 100%;
+        .glavni-btn{
+            margin-top: 24px;
+            width: 100%;
+        }
+    }
+    
+}
+
+.modal-first{
+    width: 80%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    @include media(1100px){
+        width: 850px;
+    }
+    @include media(950px){
+        width: 700px;
+    }
+    @include media(800px){
+        width: 500px;
+        padding: 24px;
+    }
+    @include media(650px){
+        width: 330px;
+        padding: 24px;
+    }
+    .left{
+        width: 49%;
+        @include media(1200px){
+            display: none;
+        }
+        position: relative;
+        height: 400px;
+        img{
+            position: absolute;
+            width: 470px;
+            height: 550px;
+            bottom:-50px;
+        }
+    }
+    .right{
+        padding-left: 30px;
+        @include media(1200px){
+            width: 100%;
+            padding-left: 0;
+            border: none;
+        }
+        width: 49%;
+        border-left: 1px solid #D0D1D3;
+
+        .txt-38{
+            text-align: start;
+            color: $c00;
+        }
+        width: 48%;
+        .input{
+            width: 100%;
+            margin-top: 12px;
+        }
+        .btn-glavni{
+            margin-top: 24px;
+            width: 100%;
+            color: $cff;
+        }
+        display: flex;
+        flex-direction: column;
+    }
+   
+}
+
+
+.bg-p{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 15;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s ease-in-out;
+    &.active{
+      opacity: 1;
+      pointer-events: all;
+    }
+  
+  }
+
+  .bg-m{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s ease-in-out;
+    &.active{
+      opacity: 1;
+      pointer-events: all;
+    }
+  
+  }
+  

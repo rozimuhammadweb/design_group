@@ -4,22 +4,28 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2158b2fbf2c2f964ea5d76c3986297c9",
+    "content-hash": "a8a765823ee1825b7f2447541b5fb912",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
-            "version": "v5.2.3",
+            "version": "v3.4.1",
             "source": {
                 "type": "git",
                 "url": "git@github.com:twbs/bootstrap.git",
-                "reference": "cb021439c683d9805e2864c58095b92d405e9b11"
+                "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/cb021439c683d9805e2864c58095b92d405e9b11",
-                "reference": "cb021439c683d9805e2864c58095b92d405e9b11"
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/68b0d231a13201eb14acd3dc84e51543d16e5f7e",
+                "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
             },
-            "type": "bower-asset"
+            "require": {
+                "bower-asset/jquery": ">=1.9.1,<4.0"
+            },
+            "type": "bower-asset",
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "bower-asset/inputmask",
@@ -412,6 +418,118 @@
                 "source": "https://github.com/ezyang/htmlpurifier/tree/v4.17.0"
             },
             "time": "2023-11-17T15:01:25+00:00"
+        },
+        {
+            "name": "gofuroov/yii2-multilingual",
+            "version": "v1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gofuroov/yii2-multilingual.git",
+                "reference": "9607528a2c95ea053de19420a0309363648665fd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gofuroov/yii2-multilingual/zipball/9607528a2c95ea053de19420a0309363648665fd",
+                "reference": "9607528a2c95ea053de19420a0309363648665fd",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0.6",
+                "yiisoft/yii2-bootstrap": "~2.0.0"
+            },
+            "require-dev": {
+                "codeception/base": "^2.2.3",
+                "codeception/specify": "~0.4.3",
+                "codeception/verify": "~0.3.1"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "gofuroov\\multilingual\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Taras Makitra"
+                }
+            ],
+            "description": "Yii2 Multilingual Module",
+            "keywords": [
+                "extension",
+                "i18n",
+                "multilingual",
+                "yii2",
+                "yii2-multilingual"
+            ],
+            "support": {
+                "issues": "https://github.com/gofuroov/yii2-multilingual/issues",
+                "source": "https://github.com/gofuroov/yii2-multilingual/tree/v1"
+            },
+            "time": "2022-04-29T13:15:10+00:00"
+        },
+        {
+            "name": "mohorev/yii2-upload-behavior",
+            "version": "0.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mohorev/yii2-upload-behavior.git",
+                "reference": "f81f64f0348aa9c901154bf112bd6d6a7748e9cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mohorev/yii2-upload-behavior/zipball/f81f64f0348aa9c901154bf112bd6d6a7748e9cb",
+                "reference": "f81f64f0348aa9c901154bf112bd6d6a7748e9cb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0",
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "require-dev": {
+                "phpunit/dbunit": "~1.0",
+                "phpunit/phpunit": "~4.0",
+                "yiisoft/yii2-imagine": "^2.1"
+            },
+            "suggest": {
+                "yiisoft/yii2-imagine": "Required to use thumbnails processing with UploadImageBehavior"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "mohorev\\file\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Mohorev",
+                    "email": "dev.mohorev@gmail.com"
+                }
+            ],
+            "description": "Upload behavior for Yii 2",
+            "homepage": "https://github.com/mohorev/yii2-upload-behavior",
+            "keywords": [
+                "Behavior",
+                "extension",
+                "file",
+                "image",
+                "resize",
+                "thumb",
+                "upload",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/mohorev/yii2-upload-behavior/issues?state=open",
+                "source": "https://github.com/mohorev/yii2-upload-behavior"
+            },
+            "time": "2023-10-28T17:52:43+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -1469,43 +1587,45 @@
             "time": "2023-10-31T15:39:08+00:00"
         },
         {
-            "name": "yiisoft/yii2-bootstrap5",
-            "version": "2.0.4",
+            "name": "yiisoft/yii2-bootstrap",
+            "version": "2.0.11",
             "source": {
                 "type": "git",
-                "url": "https://github.com/yiisoft/yii2-bootstrap5.git",
-                "reference": "0ce35f80ca07763fa2c6f38d1c0a1aaf65c76d2e"
+                "url": "https://github.com/yiisoft/yii2-bootstrap.git",
+                "reference": "83d144f4089adaa7064ad60dc4c1436daa2eb30e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap5/zipball/0ce35f80ca07763fa2c6f38d1c0a1aaf65c76d2e",
-                "reference": "0ce35f80ca07763fa2c6f38d1c0a1aaf65c76d2e",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/83d144f4089adaa7064ad60dc4c1436daa2eb30e",
+                "reference": "83d144f4089adaa7064ad60dc4c1436daa2eb30e",
                 "shasum": ""
             },
             "require": {
-                "bower-asset/bootstrap": "^5.1.0",
-                "ext-json": "*",
-                "php": ">=7.0",
-                "yiisoft/yii2": "^2.0.42"
+                "bower-asset/bootstrap": "3.4.* | 3.3.* | 3.2.* | 3.1.*",
+                "yiisoft/yii2": "~2.0.6"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.5.14",
-                "twbs/bootstrap-icons": "^1.7.2",
-                "yiisoft/yii2-coding-standards": "~2.0"
-            },
-            "suggest": {
-                "twbs/bootstrap-icons": "Add this package to the `require` section of your `composer.json` if you'd like to use the bootstrap icon asset."
+                "cweagans/composer-patches": "^1.7",
+                "phpunit/phpunit": "4.8.34"
             },
             "type": "yii2-extension",
             "extra": {
                 "branch-alias": {
                     "dev-master": "2.0.x-dev"
                 },
-                "bootstrap": "yii\\bootstrap5\\i18n\\TranslationBootstrap"
+                "patches": {
+                    "phpunit/phpunit-mock-objects": {
+                        "Fix PHP 7 and 8 compatibility": "https://yiisoft.github.io/phpunit-patches/phpunit_mock_objects.patch"
+                    },
+                    "phpunit/phpunit": {
+                        "Fix PHP 7 compatibility": "https://yiisoft.github.io/phpunit-patches/phpunit_php7.patch",
+                        "Fix PHP 8 compatibility": "https://yiisoft.github.io/phpunit-patches/phpunit_php8.patch"
+                    }
+                }
             },
             "autoload": {
                 "psr-4": {
-                    "yii\\bootstrap5\\": "src"
+                    "yii\\bootstrap\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1514,24 +1634,35 @@
             ],
             "authors": [
                 {
-                    "name": "Sergey Zhukovskiy",
-                    "email": "mylistryx@gmail.com",
-                    "homepage": "https://net23.ru/"
+                    "name": "Qiang Xue",
+                    "email": "qiang.xue@gmail.com",
+                    "homepage": "http://www.yiiframework.com/"
                 },
                 {
-                    "name": "Simon Karlen",
-                    "email": "simi.albi@outlook.com"
+                    "name": "Alexander Makarov",
+                    "email": "sam@rmcreative.ru",
+                    "homepage": "http://rmcreative.ru/"
+                },
+                {
+                    "name": "Antonio Ramirez",
+                    "email": "amigo.cobos@gmail.com"
+                },
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
                 }
             ],
-            "description": "The Twitter Bootstrap v5 extension for the Yii framework",
+            "description": "The Twitter Bootstrap extension for the Yii framework",
             "keywords": [
                 "bootstrap",
-                "bootstrap5",
                 "yii2"
             ],
             "support": {
-                "issues": "https://github.com/yiisoft/yii2-bootstrap5/issues",
-                "source": "https://github.com/yiisoft/yii2-bootstrap5"
+                "forum": "http://www.yiiframework.com/forum/",
+                "irc": "irc://irc.freenode.net/yii",
+                "issues": "https://github.com/yiisoft/yii2-bootstrap/issues",
+                "source": "https://github.com/yiisoft/yii2-bootstrap",
+                "wiki": "http://www.yiiframework.com/wiki/"
             },
             "funding": [
                 {
@@ -1543,11 +1674,11 @@
                     "type": "open_collective"
                 },
                 {
-                    "url": "https://tidelift.com/funding/github/packagist/yiisoft/yii2-bootstrap5",
+                    "url": "https://tidelift.com/funding/github/packagist/yiisoft/yii2-bootstrap",
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-11-30T08:25:21+00:00"
+            "time": "2021-08-09T20:54:06+00:00"
         },
         {
             "name": "yiisoft/yii2-composer",

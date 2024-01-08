@@ -1,0 +1,144 @@
+@mixin media($width) {
+   @media (max-width: $width) {
+      @content;
+   }
+}
+
+@mixin font16x21xfw400 {
+   font-size: 16px;
+   line-height: 21px;
+   font-weight: 400;
+   @include media(650px){
+      font-size: 14px;
+      line-height: 18px;
+   }
+}
+@mixin font14x20xfw500 {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    @include media(650px){
+       font-size: 12px;
+       line-height: 18px;
+    }
+ }
+
+ @mixin font12x17xfw400 {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    @include media(650px){
+       font-size: 12px;
+       line-height: 18px;
+    }
+ }
+
+@mixin font19x23xfw500 {
+   font-size: 19px;
+   line-height: 23px;
+   font-weight: 500;
+   @include media(1150px){
+      font-size: 17px;
+      line-height: 20px;
+   }
+   @include media(650px){
+      font-size: 16px;
+      line-height: 18px;
+   }
+}
+
+@mixin font20x30xfw400 {
+   font-size: 20px;
+   line-height: 30px;
+   font-weight: 400;
+}
+
+@mixin font22x26xfw700 {
+   font-size: 22px;
+   line-height: 26px;
+   font-weight: 700;
+   @include media(1380px){
+      font-size: 20px;
+   }
+   @include media(1380px){
+      font-size: 18px;
+   }
+}
+
+@mixin font18x21xfw500 {
+   font-size: 18px;
+   line-height: 21px;
+   font-weight: 400;
+   @include media(650px){
+      font-size: 16px;
+      line-height: 18px;
+   }
+}
+
+@mixin font38x41xfw600 {
+   font-size: 38px;
+   line-height: 41px;
+   font-weight: 600;
+   @include media(1150px){
+      font-size: 32px;
+      line-height: 37px;
+   }
+   @include media(650px){
+      font-size: 24px;
+      line-height: 28px;
+   }
+}
+
+@mixin font23x31xfw600 {
+   font-weight: 600;
+   font-size: 23px;
+   line-height: 28px;
+   @include media(1150px){
+      font-size: 20px;
+      line-height: 33px;
+   }
+   @include media(650px){
+      font-size: 18px;
+      line-height: 24px;
+   }
+}
+@mixin font28x33xfw600 {
+   font-weight: 500;
+   font-size: 28px;
+   line-height: 39px;
+   @include media(1150px){
+      font-size: 26px;
+      line-height: 30px;
+   }
+   @include media(650px){
+      font-size: 20px;
+      line-height: 24px;
+   }
+}
+
+@mixin font60x72xfw600 {
+   font-weight: 600;
+   font-size: 60px;
+   line-height: 72px;
+   @include media(1150px){
+      font-size: 48px;
+      line-height: 44px;
+   }
+   @include media(650px){
+      font-size: 28px;
+      line-height: 30px;
+   }
+}
+@mixin font40x56xfw400 {
+   font-weight: 400;
+   font-size: 40px;
+   line-height: 56px;
+   @include media(1150px){
+      font-size: 38px;
+      line-height: 44px;
+   }
+   @include media(650px){
+      font-size: 28px;
+      line-height: 35px;
+   }
+}

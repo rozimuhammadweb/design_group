@@ -1,0 +1,262 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: $font-inter;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+h1 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+h2 {
+    margin: 0;
+}
+ul {
+    margin: 0;
+}
+h3 {
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    background: $cff;
+}
+
+img {
+    object-position: center;
+    object-fit: cover;
+}
+
+.my-container {
+    margin: 0 80px;
+    @include media(1380px){
+        margin: 0 75px;
+    }
+    @include media(1050px){
+        margin: 0 60px;
+    }
+    @include media(850px){
+        margin: 0 40px;
+    }
+    @include media(650px){
+        margin: 0 20px;
+    }
+}
+
+.txt-18 {
+    @include font18x21xfw500;
+}
+.txt-40 {
+    @include font40x56xfw400;
+}
+.txt-14{
+    @include font14x20xfw500;
+}
+.txt-12{
+    @include font12x17xfw400;
+}
+.txt-22 {
+    @include font22x26xfw700;
+}
+
+.txt-60 {
+    @include font60x72xfw600;
+}
+
+.txt-38 {
+    @include font38x41xfw600;
+}
+
+.txt-28 {
+    @include font28x33xfw600;
+}
+
+.txt-23 {
+    @include font23x31xfw600;
+}
+
+.txt-16 {
+    @include font16x21xfw400;
+}
+
+.txt-19 {
+    @include font19x23xfw500;
+}
+
+.txt-20 {
+    @include font20x30xfw400;
+}
+
+.swiper-wrapper{
+    padding-bottom: 3px;
+}
+
+.btn-glavni {
+    position: relative;
+    display: inline-block;
+    padding: 14px 40px;
+    @include media(650px){
+        padding: 12px 40px;
+    }
+    text-align: center;
+    color: $cff;
+    font-weight: 600;
+    background: $c1c;
+    border: 2px solid $c1c;
+    cursor: pointer;
+    transition: ease-out 0.5s;
+    &::before {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 0;
+        transition: .5s;
+        bottom: -7px;
+        right: -7px;
+        @include media(650px){
+            border-bottom: 1px solid transparent;
+            border-right: 1px solid transparent;
+
+        }
+        border-bottom: 2px solid transparent;
+        border-right: 2px solid transparent;
+    }
+    &::after {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 0;
+        transition: .5s;
+        top: -7px;
+        left: -7px;
+        @include media(650px){
+            border-top: 1px solid transparent;
+            border-left: 1px solid transparent;
+
+        }
+        border-top: 2px solid transparent;
+        border-left: 2px solid transparent;
+    }
+    
+    &:hover {
+        @include media(650px){
+            border: 1px solid $chc;
+
+        }
+        background: $chc !important;
+        color: $cff;
+        border: 2px solid $chc;
+    }
+    
+    &:hover::after,
+    &:hover::before {
+        @include media(650px){
+            width: 15px;
+            height: 15px;
+        }
+        width: 30px;
+        height: 30px;
+        border-color: $c1c;
+    }
+}
+button{
+    border: none;
+    outline: none;
+}
+
+.btn-slider{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $c1c;
+    transition: .3s;
+    &:hover{
+        background: $chc;
+    }
+    svg{
+        width: 24px;
+        height: 24px;
+    }
+}
+
+.back-btn {
+    position: relative;
+    display: inline-block;
+    padding: 14px 40px;
+    @include media(650px){
+        padding: 12px 40px;
+        border: 1px solid $c1c;
+    }
+    text-align: center;
+    color: $c00;
+    font-weight: 600;
+    background: transparent;
+    border: 2px solid $c1c;
+    cursor: pointer;
+    transition: ease-out 0.5s;
+    &::before {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 0;
+        transition: .5s;
+        bottom: -7px;
+        right: -7px;
+        @include media(650px){
+            border-bottom: 1px solid transparent;
+            border-right: 1px solid transparent;
+        }
+        border-bottom: 2px solid transparent;
+        border-right: 2px solid transparent;
+    }
+    &::after {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 0;
+        transition: .5s;
+        top: -7px;
+        left: -7px;
+        @include media(650px){
+            border-top: 1px solid transparent;
+            border-left: 1px solid transparent;
+        }
+        border-top: 2px solid transparent;
+        border-left: 2px solid transparent;
+    }
+    
+    &:hover {
+        background: transparent !important;
+        color: $c00;
+    }
+    
+    &:hover::after,
+    &:hover::before {
+        @include media(650px){
+            width: 15px;
+            height: 15px;
+        }
+        width: 30px;
+        height: 30px;
+        border-color: $c1c;
+    }
+}

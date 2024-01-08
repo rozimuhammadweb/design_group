@@ -1,0 +1,178 @@
+//top-slider
+
+.slider-page{
+    width: 100%;
+    padding: 40px 0;
+    background: $cff;
+    .slider-page-in{
+        width: 100%;
+        .top{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .txt-38{
+                color: $c00;
+            }
+            .buttons{
+                display: flex;
+                align-items: center;
+                .btn-slider{
+                    margin-right: 24px;
+                    &:last-child{
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+        .slider-first{
+            width: 100%;
+            margin-top: 40px;
+            .card-s{
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                transition: .3s;
+                cursor: pointer;
+                &:hover{
+                    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+                    transform: translateY(-5px);
+                    .top{
+                        .top-in{
+                            transform: scale(1.2);
+                        }
+                    }
+                    .txt-28{
+                        color: $c1c;
+                    }
+                }
+                .top{
+                    width: 100%;
+                    height: 231px;
+                    background: #5A9206;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    &-in{
+                        width: 130px;
+                        height: 130px;
+                        border-radius: 50%;
+                        background: #528407;
+                        transition: .3s;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        img{
+                            width: 85px;
+                            height: 85px;
+                            object-fit: contain;
+                        }
+                    }
+                }
+                .txt-28{
+                    transition: .3s;
+                    padding: 24px 12px;
+                    color: #4E4F52 ;
+                }
+            }
+        }
+    }
+}
+
+//slider-bottom
+
+.slider-bottom{
+    width: 100%;
+    padding: 80px 0;
+    position: relative;
+    background: $c5c;
+    border-top: 1px solid #D0D1D3;
+    border-bottom: 1px solid #D0D1D3;
+    .slider-bottom-in{
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        .left{
+            width: 40%;
+            img{
+                position: absolute;
+                bottom:0;
+                left: 10px;
+                @include media(1130px){
+                    width: 400px;
+                    height: 500px;
+                }
+                width: 530px;
+                height: 600px;
+            }
+        }
+        .right{
+            width: 57%;
+            float: right;
+            &-top{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .txt-38{
+                    color: $c00;
+                    margin-right: 18px;
+                }
+                .txt-16{
+                    color: #4E4F52;
+                    font-weight: 400;
+                    width: 60%;
+                }
+            }
+            .bottom-cards{
+                margin-top: 10px;
+                width: 100%;
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                .card-r{
+                    margin-top: 30px;
+                    width: 23.5%;
+                    .top{
+                        background: $cff;
+                        border: 1px solid #D0D1D3;
+                        width: 100%;
+                        height: 130px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        img{
+                            width: 70px;
+                            height: 70px;
+                            object-fit: contain;
+                            // animation: iconA 5s infinite;
+                        }
+                    }
+                    .txt-20{
+                        font-weight: 600;
+                        margin-top: 12px;
+                        width: 100%;
+                        text-align: center;
+                        color: $c00;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+@keyframes iconA {
+    0%{
+        transform: translateY(0);
+    }
+    25%{
+        transform: translateY(-15px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}

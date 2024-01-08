@@ -1,0 +1,153 @@
+.main-page-content{
+    width: 100%;
+    padding: 50px 0 80px;
+    background: $cff;
+    .main-content-in{
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        .sec-content{
+            @include media(1270){
+                width: 55%;
+            }
+            width: 60%;
+            .txt-60{
+                color: $c00;
+            }
+            .txt-38{
+                color: $c00;
+                margin-top: 24px;
+            }
+            .txt-20{
+                color: #4E4F52;
+                margin-top: 24px;
+                font-weight: 400;
+            }
+            .txt-28{
+                color: $c00;
+                margin-top: 30px;
+                font-weight: 600;
+            }
+            .sec-img{
+                width: 100%;
+                height: 450px;
+                margin-top: 40px;
+            }
+            .btn-glavni{
+                margin-top: 30px;
+            }
+        }
+        .sidebar-content{
+            @include media(1270){
+                width: 44%;
+            }
+            width: 36%;
+            .cards-blog{
+                width: 100%;
+                background: $c5c;
+                border: 1px solid #D0D1D3;
+                padding: 30px;
+                &:last-child{
+                    margin-top: 50px;
+                }
+                .back-btn{
+                    margin-top: 30px;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    img{
+                        margin-right: 18px;
+                        width: 33px;
+                        height: 35px;
+                    }
+                }
+                .txt-23{
+                    margin-top: 0;
+                    font-weight: 500;
+                }
+                .card-s{
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    transition: .3s;
+                    margin-top: 24px;
+                    padding: 15px 18px 14px;
+                    background: $cff;
+                    border: 1px solid #D0D1D3;
+                    &:hover{
+                        background: $c1c;
+                        border: 1px solid $c1c;
+                        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+                        transform: translateY(-3px);
+                        .left{
+                            background: $chc;
+                            
+                        }
+                        .txt-18{
+                            color: $cff;
+                        }
+                    }
+
+                    .left{
+                        width: 44px;
+                        height: 44px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: $c1c;
+                        transition: .3s;
+                        margin-right: 12px;
+                        img{
+                            width: 28px;
+                            height: 28px;
+                            object-fit: contain;
+                        }
+                    }
+                    .txt-18{
+                        color: #4E4F52;
+                        font-weight: 500;
+                        transition: .3s;
+                    }
+                }
+            }
+        }
+    }
+}
+.txt-60{
+    color: $c00;
+}
+.about-padding{
+    padding: 50px 0 0 !important;
+}
+
+.bottom-crs{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 60px;
+    .counter-card{
+        min-height: 160px;
+        padding: 24px 22px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 32%;
+        border: 1px solid #D0D1D3;
+        .txt-40{
+            color: $c1c;
+            text-align: center;
+            font-weight: 600;
+        }
+        .txt-16{
+            text-align: center;
+            color: $c6c;
+            font-weight: 400;
+        }
+    }
+
+
+}
