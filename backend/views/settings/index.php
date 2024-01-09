@@ -6,6 +6,7 @@ use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /** @var yii\web\View $this */
 /** @var common\models\SettingsSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
@@ -13,10 +14,9 @@ use yii\widgets\Pjax;
 $this->title = 'Settings';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="card card-primary card-outline mt-5">
+<div class="card card-primary card-outline ">
     <div class="card-body">
         <div class="settings-index">
-
 
             <p>
                 <?= Html::a('<i class="fa fa-plus"></i>', ['create'], ['class' => 'btn btn-success']) ?>
@@ -30,12 +30,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-
-                    'id',
                     'number',
                     'email:email',
                     'logo',
-                    'status',
+//                    [
+//                        'attribute' => 'logo',
+//                        'value' => function ($model) {
+//                            return Html::img($model->getUploadUrl('logo', 'small'), ['class' => 'img-thumbnail']);
+//                        },
+//                    ],
+
+                    [
+                        'attribute' => 'status',
+                        'value' => function ($model) {
+                            return $model->status == 1 ? 'Active' : 'In Active';
+                        },
+                    ],
                     [
                         'class' => ActionColumn::className(),
                         'urlCreator' => function ($action, Settings $model, $key, $index, $column) {

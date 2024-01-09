@@ -19,7 +19,7 @@ use yii\widgets\MaskedInput;
             <div class="row">
                 <div class="col-6">
                     <?= $form->field($model, 'number')->widget(MaskedInput::class, [
-                        'mask' => '99999-999-9999',
+                        'mask' => '99-999-99-99',
                     ]) ?>                </div>
                 <div class="col-6">
                     <?= $form->field($model, 'email')->textInput(['maxlength' => true, 'placeholder' => 'example@gmail.com']) ?>
@@ -37,7 +37,7 @@ use yii\widgets\MaskedInput;
                     <?= $form->field($model, 'working_time')->textarea(['maxlength' => true, 'rows' => 6, 'placeholder' => 'Working Time (Uzbek)']) ?>
                 </div>
 
-                <div class="col-8">
+                <div class="col-12">
                     <?= $form->field($model, 'logo')->widget(FileInput::class, [
                         'options' => ['accept' => 'image/*'],
                         'pluginOptions' => [
@@ -49,7 +49,7 @@ use yii\widgets\MaskedInput;
                     ]) ?>
 
                 </div>
-                <div class="col-4 d-flex justify-content-center pt-1">
+                <div class="col-4">
                     <?= $form->field($model, 'status')->widget(SwitchInput::classname(), []); ?>
                 </div>
             </div>

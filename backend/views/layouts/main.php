@@ -27,12 +27,12 @@ AppAsset::register($this);
     <?php $this->beginBody() ?>
     <div class="wrapper">
         <?= Navbar::widget() ?>
-        <div class="content-wrapper px-5">
+        <div class="content-wrapper px-4 pt-4">
             <?= Alert::widget() ?>
-            <?= SideBar::widget() ?>
             <?= Breadcrumbs::widget([
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]) ?>
+            <?= SideBar::widget() ?>
             <?= $content ?>
         </div>
     </div>

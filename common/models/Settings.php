@@ -61,7 +61,7 @@ class Settings extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['number'], 'required'],
+            [['number', 'email', 'company_info'], 'required'],
             [['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'on' => ['insert', 'update']],
             [['company_info', 'address', 'working_time'], 'string', 'max' => 255],
             [['status'], 'integer'],
