@@ -21,29 +21,10 @@ use Yii;
 class SettingLang extends \yii\db\ActiveRecord
 {
 
-    public function behaviors()
-    {
-        return [
-            'multilingual' => [
-                'class' => MultilingualBehavior::className(),
-                'languages' => [
-                    'uz' => 'Uzbek',
-                    'ru' => 'Русский',
-                    'en' => "English",
-                ],
-                'attributes' => [
-                    'company_info',
-                    'address',
-                    'working_time'
-                ]
-            ],
-
-        ];
-    }
 
     public static function tableName()
     {
-        return 'setting_lang';
+        return '{{%setting_lang}}';
     }
 
 
@@ -70,11 +51,6 @@ class SettingLang extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * Gets query for [[Owner]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
     public function getOwner()
     {
         return $this->hasOne(Settings::class, ['id' => 'owner_id']);

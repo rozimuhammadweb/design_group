@@ -22,10 +22,12 @@
     "php": ">=7.4.0",
     "yiisoft/yii2": "~2.0.45",
     "gofuroov/yii2-multilingual": "^1.0",
-    "yiisoft/yii2-bootstrap": "2.0.*",
+    "yiisoft/yii2-bootstrap4": "~2.0.0",
     "yiisoft/yii2-symfonymailer": "~2.0.3",
     "mohorev/yii2-upload-behavior": "*",
-    "2amigos/yii2-imagine-extension": "^2.3"
+    "yiisoft/yii2-imagine": "^2.3",
+    "kartik-v/yii2-widget-fileinput": "dev-master",
+    "kartik-v/yii2-widget-switchinput": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",

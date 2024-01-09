@@ -9,6 +9,7 @@ use backend\widgets\Navbar;
 use backend\widgets\SideBar;
 use common\widgets\Alert;
 use yii\bootstrap\Html;
+use yii\bootstrap4\Breadcrumbs;
 
 AppAsset::register($this);
 ?>
@@ -27,8 +28,11 @@ AppAsset::register($this);
     <div class="wrapper">
         <?= Navbar::widget() ?>
         <div class="content-wrapper px-5">
-            <?= SideBar::widget() ?>
             <?= Alert::widget() ?>
+            <?= SideBar::widget() ?>
+            <?= Breadcrumbs::widget([
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            ]) ?>
             <?= $content ?>
         </div>
     </div>

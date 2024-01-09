@@ -17,7 +17,7 @@ class m240108_081413_create_settings_table extends Migration
             'logo' => $this->string(),
             'status' => $this->boolean()->defaultValue(false)
         ]);
-        $this->createTable('{{%setting_lang}}', [
+        $this->createTable('{{%settings_lang}}', [
             'id' => $this->primaryKey(),
             'owner_id' => $this->integer(),
             'company_info' => $this->text(),
@@ -26,15 +26,15 @@ class m240108_081413_create_settings_table extends Migration
             'language' => $this->string(6),
         ]);
 
-        $this->addForeignKey('fk-setting_lang-relation', '{{%setting_lang}}', 'owner_id',
+        $this->addForeignKey('fk-settings_lang-relation', '{{%settings_lang}}', 'owner_id',
             '{{%settings}}', 'id', 'CASCADE', 'CASCADE');
     }
 
 
     public function safeDown()
     {
-        $this->dropForeignKey('fk-setting_lang-relation', '{{%setting_lang}}');
-        $this->dropTable('{{%setting_lang}}');
+        $this->dropForeignKey('fk-settings_lang-relation', '{{%settings_lang}}');
+        $this->dropTable('{{%settings_lang}}');
         $this->dropTable('{{%settings}}');
     }
 }

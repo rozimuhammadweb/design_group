@@ -6,22 +6,15 @@ use yii\helpers\Url;
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
-    <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+    <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home"
-               role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Home</a>
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile"
-               role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Profile</a>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Home</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages"
-               role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">Messages</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="custom-tabs-one-settings-tab" data-toggle="pill" href="<?= Url::to(['/settings']) ?>"
-               role="tab" aria-controls="custom-tabs-one-settings" aria-selected="false">Settings</a>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Contact</a>
         </li>
     </ul>
 

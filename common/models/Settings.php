@@ -3,8 +3,10 @@
 namespace common\models;
 
 use gofuroov\multilingual\behaviors\MultilingualBehavior;
+use gofuroov\multilingual\db\MultilingualLabelsTrait;
+use gofuroov\multilingual\db\MultilingualQuery;
 use mohorev\file\UploadImageBehavior;
-use Yii;
+
 
 /**
  * This is the model class for table "settings".
@@ -20,6 +22,10 @@ use Yii;
 class Settings extends \yii\db\ActiveRecord
 {
 
+    public $imageFiles;
+
+    use MultilingualLabelsTrait;
+
     public function behaviors()
     {
         return [
@@ -33,6 +39,16 @@ class Settings extends \yii\db\ActiveRecord
                     'thumb' => ['width' => 570, 'height' => 590],
                 ],
             ],
+            'multilingual' => [
+                'class' => MultilingualBehavior::className(),
+                'languages' => [
+                    'uz' => 'Uzbek',
+                    'ru' => 'Русский',
+                    'en' => "English",
+                ],
+                'attributes' => ['company_info', 'address', 'working_time',],
+
+            ],
         ];
     }
 
@@ -45,9 +61,12 @@ class Settings extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['number'], 'required'],
+            [['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'on' => ['insert', 'update']],
+            [['company_info', 'address', 'working_time'], 'string', 'max' => 255],
             [['status'], 'integer'],
             [['number'], 'string', 'max' => 20],
-            [['email', 'logo'], 'string', 'max' => 255],
+            [['email'], 'string', 'max' => 255],
         ];
     }
 
@@ -56,16 +75,32 @@ class Settings extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'number' => 'Number',
-            'email' => 'Email',
-            'logo' => 'Logo',
+            'number' => 'Telefon raqam',
+            'email' => 'Elektron pochta',
+            'logo' => 'Rasm',
             'status' => 'Status',
         ];
     }
 
+    public function getLanguages()
+    {
+        return [
+            'uz' => 'Uzbek',
+            'ru' => 'Русский',
+            'en' => 'English',
+        ];
+    }
 
     public function getSettingLangs()
     {
         return $this->hasMany(SettingLang::class, ['owner_id' => 'id']);
     }
+
+    public static function find()
+    {
+        $query = new MultilingualQuery(get_called_class());
+        return $query->multilingual();
+    }
+
+
 }

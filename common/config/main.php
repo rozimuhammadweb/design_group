@@ -9,5 +9,13 @@ return [
         'cache' => [
             'class' => \yii\caching\FileCache::class,
         ],
+        'i18n' => [
+            'translations' => [
+                'app' => [
+                    'class' => 'yii\i18n\DbMessageSource',
+                    'forceTranslation' => true,
+                ]
+            ],
+        ],
     ],
 ];

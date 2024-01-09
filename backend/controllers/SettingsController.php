@@ -4,18 +4,16 @@ namespace backend\controllers;
 
 use common\models\Settings;
 use common\models\SettingsSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
-/**
- * SettingsController implements the CRUD actions for Settings model.
- */
+
 class SettingsController extends Controller
 {
-    /**
-     * @inheritDoc
-     */
+
     public function behaviors()
     {
         return array_merge(
@@ -31,15 +29,11 @@ class SettingsController extends Controller
         );
     }
 
-    /**
-     * Lists all Settings models.
-     *
-     * @return string
-     */
     public function actionIndex()
     {
         $searchModel = new SettingsSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -47,12 +41,7 @@ class SettingsController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Settings model.
-     * @param int $id ID
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     public function actionView($id)
     {
         return $this->render('view', [
@@ -60,21 +49,22 @@ class SettingsController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Settings model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
+
+
     public function actionCreate()
     {
         $model = new Settings();
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->logo = UploadedFile::getInstance($model, 'imageFiles');
+            if ($model->save()) {
+                if ($model->imageFiles) {
+                    $model->setScenario('insert');
+                }
+//                $this->saveMultilingualData($model);
+
                 return $this->redirect(['view', 'id' => $model->id]);
             }
-        } else {
-            $model->loadDefaultValues();
         }
 
         return $this->render('create', [
@@ -82,13 +72,22 @@ class SettingsController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Settings model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    protected function saveMultilingualData($model)
+    {
+        $post = Yii::$app->request->post();
+
+        foreach ($model->getLanguages() as $languageCode => $languageName) {
+            $model->load($post);
+            $model->loadTranslations($post, $languageCode);
+
+            $translationModel = $model->getTranslation($languageCode);
+            $translationModel->owner_id = $model->id;
+
+            $translationModel->save();
+        }
+    }
+
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -102,13 +101,7 @@ class SettingsController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Settings model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -116,13 +109,7 @@ class SettingsController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Settings model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
-     * @return Settings the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     protected function findModel($id)
     {
         if (($model = Settings::findOne(['id' => $id])) !== null) {

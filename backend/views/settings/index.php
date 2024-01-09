@@ -13,37 +13,41 @@ use yii\widgets\Pjax;
 $this->title = 'Settings';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="settings-index">
+<div class="card card-primary card-outline mt-5">
+    <div class="card-body">
+        <div class="settings-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Settings', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+            <p>
+                <?= Html::a('<i class="fa fa-plus"></i>', ['create'], ['class' => 'btn btn-success']) ?>
+            </p>
 
-    <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+            <?php Pjax::begin(); ?>
+            <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'number',
-            'email:email',
-            'logo',
-            'status',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Settings $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
-            ],
-        ],
-    ]); ?>
+                    'id',
+                    'number',
+                    'email:email',
+                    'logo',
+                    'status',
+                    [
+                        'class' => ActionColumn::className(),
+                        'urlCreator' => function ($action, Settings $model, $key, $index, $column) {
+                            return Url::toRoute([$action, 'id' => $model->id]);
+                        }
+                    ],
+                ],
+            ]); ?>
 
-    <?php Pjax::end(); ?>
+            <?php Pjax::end(); ?>
 
+        </div>
+
+    </div>
 </div>
