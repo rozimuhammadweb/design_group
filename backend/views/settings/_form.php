@@ -20,14 +20,6 @@ use yii\widgets\MaskedInput;
                     <?= $form->languageSwitcher($model) ?>
 
                 </div>
-                <div class="col-6">
-                    <?= $form->field($model, 'number')->widget(MaskedInput::class, [
-                        'mask' => '99-999-99-99',
-                    ]) ?>                </div>
-                <div class="col-6">
-                    <?= $form->field($model, 'email')->textInput(['maxlength' => true, 'placeholder' => 'example@gmail.com']) ?>
-                </div>
-
                 <div class="col-12">
                     <?= $form->field($model, 'company_info')->textarea(['maxlength' => true, 'rows' => 6, 'placeholder' => 'Company Info (Uzbek)']) ?>
                 </div>
@@ -40,6 +32,13 @@ use yii\widgets\MaskedInput;
                     <?= $form->field($model, 'working_time')->textarea(['maxlength' => true, 'rows' => 6, 'placeholder' => 'Working Time (Uzbek)']) ?>
                 </div>
 
+                <div class="col-6">
+                    <?= $form->field($model, 'number')->widget(MaskedInput::class, [
+                        'mask' => '99-999-99-99',
+                    ]) ?>                </div>
+                <div class="col-6">
+                    <?= $form->field($model, 'email')->textInput(['maxlength' => true, 'placeholder' => 'example@gmail.com']) ?>
+                </div>
                 <div class="col-12">
                     <?= $form->field($model, 'logo')->widget(FileInput::class, [
                         'options' => ['accept' => 'image/*'],

@@ -29,6 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
+                    'title_uz',
+                    'short_description_uz',
+                    'description_uz',
                     'successful_project',
                     'regular_customer',
                     'quality_service',
@@ -44,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'value' => function ($model) {
                             $text = $model->status == 1 ? 'Active' : 'In Active';
                             $class = $model->status == 1 ? 'bg-success' : 'bg-danger';
-                            return "<p class='btn-info d-flex justify-content-center {$class}'>{$text}</p>";
+                            return "<span class='btn btn-success'>{$text}</span>";
                         },
                         'format' => 'html',
                     ],

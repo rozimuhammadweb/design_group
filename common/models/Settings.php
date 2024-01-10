@@ -80,6 +80,8 @@ class Settings extends \yii\db\ActiveRecord
             'logo' => 'Rasm',
             'status' => 'Status',
             'company_info' => 'Kompaniya ma\'lumotlari',
+            'working_time' => 'Ish jadvali',
+            'address' => 'Manzil',
         ];
     }
 

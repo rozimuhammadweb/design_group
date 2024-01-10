@@ -9,6 +9,8 @@ use gofuroov\multilingual\db\MultilingualQuery;
 use Imagine\Image\Box;
 use Imagine\Image\ImageInterface;
 use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use zxbodya\yii2\galleryManager\GalleryBehavior;
@@ -47,8 +49,9 @@ class About extends ActiveRecord
     {
         return [
             [['successful_project', 'regular_customer', 'quality_service', 'status'], 'integer'],
+            [['successful_project', 'regular_customer', 'quality_service'], 'required'],
             [['title', 'short_description', 'description'], 'string', 'max' => 255],
-            [['created_by', 'updated_by'], 'required'],
+            [['created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -56,6 +59,10 @@ class About extends ActiveRecord
     public function behaviors()
     {
         return [
+            TimestampBehavior::class,
+            'blameable' => [
+                'class' => BlameableBehavior::class,
+            ],
             'galleryBehavior' => [
                 'class' => GalleryBehavior::className(),
                 'type' => 'about',
@@ -164,4 +171,15 @@ class About extends ActiveRecord
         $query = new MultilingualQuery(get_called_class());
         return $query->multilingual();
     }
+
+    public function getCreatedByUser()
+    {
+        return $this->hasOne(User::class, ['id' => 'created_by']);
+    }
+
+    public function getUpdatedByUser()
+    {
+        return $this->hasOne(User::class, ['id' => 'updated_by']);
+    }
+
 }

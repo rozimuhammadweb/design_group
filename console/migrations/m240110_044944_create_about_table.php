@@ -18,10 +18,10 @@ class m240110_044944_create_about_table extends Migration
             'regular_customer' => $this->integer(),
             'quality_service' => $this->integer(),
             'status' => $this->boolean()->defaultValue(false),
-            'created_by' => $this->integer()->notNull(),
-            'created_at' => $this->timestamp(),
-            'updated_by' => $this->integer()->notNull(),
-            'updated_at' => $this->timestamp(),
+            'created_by' => $this->integer(),
+            'created_at' => $this->integer(),
+            'updated_by' => $this->integer(),
+            'updated_at' => $this->integer(),
         ]);
 
         $this->createTable('{{%about_lang}}', [

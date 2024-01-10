@@ -47,7 +47,6 @@ return [
             'showScriptName' => false,
             'baseUrl' => '/admin',
             'rules' => [
-                'about/images/<id:\d+>' => 'about/images',
             ],
         ],
 

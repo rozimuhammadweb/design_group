@@ -28,15 +28,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
+                    'company_info_uz',
+                    'address_uz',
+                    'working_time_uz',
                     'number',
                     'email:email',
-                    'logo',
+                    [
+                        'attribute' => 'logo',
+                        'format' => 'raw',
+                        'value' => function ($model) {
+                            return Html::img($model->getUploadUrl('logo'), ['class' => 'img-thumbnail', 'style' => 'width:200px ']);
+                        },
+                    ],
+
                     [
                         'attribute' => 'status',
                         'value' => function ($model) {
                             $text = $model->status == 1 ? 'Active' : 'In Active';
-                            $class = $model->status == 1 ? 'bg-success' : 'bg-danger';
-                            return "<p class='btn-info d-flex justify-content-center {$class}'>{$text}</p>";
+                            return "<span class='btn btn-success d-flex justify-content-center '>{$text}</span>";
                         },
                         'format' => 'html',
                     ],

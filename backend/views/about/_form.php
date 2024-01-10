@@ -16,6 +16,15 @@ use gofuroov\multilingual\widgets\ActiveForm;
                 <div class="col-md-12">
                     <?= $form->languageSwitcher($model) ?>
                 </div>
+                <div class="col-md-12">
+                    <?= $form->field($model, 'title')->textarea(['maxlength' => true, 'rows' => 6,]) ?>
+                </div>
+                <div class="col-md-12">
+                    <?= $form->field($model, 'short_description')->textarea(['maxlength' => true, 'rows' => 6,]) ?>
+                </div>
+                <div class="col-md-12">
+                    <?= $form->field($model, 'description')->textarea(['maxlength' => true, 'rows' => 6,]) ?>
+                </div>
                 <div class="col-6">
                     <?= $form->field($model, 'successful_project')->textInput() ?>
                 </div>

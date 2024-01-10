@@ -50,7 +50,7 @@ use yii\helpers\Url;
                     <a href="<?= Url::to(['/about']) ?>" class="nav-link">
                         <i class="fa fa-info " aria-hidden="true"></i>
                         <p class="pl-2">
-                            About
+                            Biz haqimizda
                         </p>
                     </a>
                 </li>
@@ -58,7 +58,7 @@ use yii\helpers\Url;
                     <a href="<?= Url::to(['/settings']) ?>" class="nav-link">
                         <i class="fa fa-cog " aria-hidden="true"></i>
                         <p class="pl-1">
-                            Settings
+                            Sozlamalar
                         </p>
                     </a>
                 </li>
