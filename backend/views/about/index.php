@@ -46,18 +46,27 @@ $this->params['breadcrumbs'][] = $this->title;
                             $class = $model->status == 1 ? 'bg-success' : 'bg-danger';
                             return "<p class='btn-info d-flex justify-content-center {$class}'>{$text}</p>";
                         },
-                        'format' => 'html', // Set the format to HTML
+                        'format' => 'html',
                     ],
-                    //'created_by',
-                    //'created_at',
-                    //'updated_by',
-                    //'updated_at',
+
                     [
                         'class' => ActionColumn::className(),
-                        'urlCreator' => function ($action, About $model, $key, $index, $column) {
+                        'template' => '{images} {view} {update} {delete} ',
+                        'buttons' => [
+                            'images' => function ($url, $model, $key) {
+                                $icon = Html::tag('span', '', ['class' => 'fas fa-image']);
+
+                                return Html::a($icon, ['about/images', 'id' => $model->id], [
+                                    'title' => Yii::t('yii', 'Upload'),
+                                ]);
+                            },
+                        ],
+                        'urlCreator' => function ($action, $model, $key, $index, $column) {
                             return Url::toRoute([$action, 'id' => $model->id]);
                         }
                     ],
+
+
                 ],
             ]); ?>
 

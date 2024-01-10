@@ -46,7 +46,7 @@ class About extends ActiveRecord
     public function rules()
     {
         return [
-            [['successful_project', 'regular_customer', 'quality_service', 'status', 'created_by'], 'integer'],
+            [['successful_project', 'regular_customer', 'quality_service', 'status'], 'integer'],
             [['title', 'short_description', 'description'], 'string', 'max' => 255],
             [['created_by', 'updated_by'], 'required'],
             [['created_at', 'updated_at'], 'safe'],

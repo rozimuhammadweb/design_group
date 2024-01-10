@@ -83,14 +83,6 @@ class Settings extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getLanguages()
-    {
-        return [
-            'uz' => 'Uzbek',
-            'ru' => 'Русский',
-            'en' => 'English',
-        ];
-    }
 
 
 

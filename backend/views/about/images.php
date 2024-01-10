@@ -6,6 +6,7 @@ use zxbodya\yii2\galleryManager\GalleryManager;
 /* @var $this yii\web\View */
 /* @var $model About */
 ?>
+
 <?php
 if ($model->isNewRecord) {
     echo 'Can not upload images for new record';
