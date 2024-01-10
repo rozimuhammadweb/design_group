@@ -64,8 +64,6 @@ class SettingsController extends Controller
                 if ($model->imageFiles) {
                     $model->setScenario('insert');
                 }
-//                $this->saveMultilingualData($model);
-
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
@@ -74,22 +72,6 @@ class SettingsController extends Controller
             'model' => $model,
         ]);
     }
-
-    protected function saveMultilingualData($model)
-    {
-        $post = Yii::$app->request->post();
-
-        foreach ($model->getLanguages() as $languageCode => $languageName) {
-            $model->load($post);
-            $model->loadTranslations($post, $languageCode);
-
-            $translationModel = $model->getTranslation($languageCode);
-            $translationModel->owner_id = $model->id;
-
-            $translationModel->save();
-        }
-    }
-
 
     public function actionUpdate($id)
     {

@@ -15,8 +15,11 @@ use yii\widgets\MaskedInput;
         <div class="settings-form">
 
             <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
-            <?= $form->languageSwitcher($model) ?>
             <div class="row">
+                <div class="col-md-12">
+                    <?= $form->languageSwitcher($model) ?>
+
+                </div>
                 <div class="col-6">
                     <?= $form->field($model, 'number')->widget(MaskedInput::class, [
                         'mask' => '99-999-99-99',

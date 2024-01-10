@@ -79,6 +79,7 @@ class Settings extends \yii\db\ActiveRecord
             'email' => 'Elektron pochta',
             'logo' => 'Rasm',
             'status' => 'Status',
+            'company_info' => 'Kompaniya ma\'lumotlari',
         ];
     }
 
@@ -91,10 +92,7 @@ class Settings extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getSettingLangs()
-    {
-        return $this->hasMany(SettingLang::class, ['owner_id' => 'id']);
-    }
+
 
     public static function find()
     {

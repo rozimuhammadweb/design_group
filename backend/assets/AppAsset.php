@@ -11,6 +11,7 @@ class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
+
     public $css = [
         "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback",
         "plugins/fontawesome-free/css/all.min.css",
@@ -18,12 +19,14 @@ class AppAsset extends AssetBundle
         "dist/css/adminlte.min.css",
         "plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
     ];
+
     public $js = [
         "plugins/jquery-ui/jquery-ui.min.js",
         "plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js",
         "dist/js/adminlte.js",
         "dist/js/pages/dashboard.js",
     ];
+
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap4\BootstrapAsset',
