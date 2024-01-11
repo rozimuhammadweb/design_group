@@ -32,9 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'title_uz',
                     'short_description_uz',
                     'description_uz',
-                    'successful_project',
-                    'regular_customer',
-                    'quality_service',
                     [
                         'attribute' => 'image',
                         'format' => 'raw',

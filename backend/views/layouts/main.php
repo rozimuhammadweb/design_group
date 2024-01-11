@@ -31,7 +31,9 @@ AppAsset::register($this);
             <?= Alert::widget() ?>
             <?= Breadcrumbs::widget([
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                'options' => ['style' => 'display: flex; justify-content: flex-end; background: none;'],
             ]) ?>
+
             <?= SideBar::widget() ?>
             <?= $content ?>
         </div>

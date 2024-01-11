@@ -34,7 +34,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     'address',
                     'number',
                     'email:email',
-                    'logo',
+                    [
+                        'attribute' => 'logo',
+                        'format' => 'raw',
+                        'value' => function ($model) {
+                            return Html::img($model->getUploadUrl('logo'), ['class' => 'img-thumbnail', 'style' => 'width:200px ']);
+                        },
+                    ],
                     [
                         'attribute' => 'status',
                         'value' => function ($model) {

@@ -109,9 +109,12 @@ class About extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'successful_project' => 'Successful Project',
-            'regular_customer' => 'Regular Customer',
-            'quality_service' => 'Quality Service',
+            'title' => 'Sarlavha',
+            'short_description' => 'Qisqa tavsifi',
+            'description' => 'Tavsifi',
+            'successful_project' => 'Muvaffaqiyatli loyiha',
+            'regular_customer' => 'Doimiy mijozlar',
+            'quality_service' => 'Sifatli xizmat',
             'status' => 'Status',
             'created_by' => 'Created By',
             'created_at' => 'Created At',

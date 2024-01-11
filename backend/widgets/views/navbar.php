@@ -5,7 +5,7 @@ use yii\helpers\Url;
 
 ?>
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header navbar navbar-expand navbar-light navbar-dark">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -42,43 +42,40 @@ use yii\helpers\Url;
         </li>
 
         <!-- Messages Dropdown Menu -->
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                <span class="badge badge-danger navbar-badge">1</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                            </h3>
-                        </div>
-                    </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <?php if (Yii::$app->user->isGuest) : ?>
-                    <?= Html::tag('div', Html::a('Login', ['/site/login'], ['class' => ['btn btn-link login text-decoration-none']]), ['class' => ['d-flex']]) ?>
-                <?php else : ?>
-                    <?= Html::beginForm(['/site/logout'], 'post', ['class' => 'd-flex'])
-                    . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->username . ')',
-                        ['class' => 'btn btn-link logout text-decoration-none']
-                    )
-                    . Html::endForm(); ?>
-                <?php endif; ?>
-            </div>
-        </li>
-
 
         <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                 <i class="fas fa-expand-arrows-alt"></i>
             </a>
         </li>
-
+        <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-user mr-2"></i>
+                <span class="hidden-xs "> admin</span>
+                <i class="fas fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu" style="left: inherit;">
+                <li class="user-header bg-light">
+                    <img src="/admin/dist/img/AdminLTELogo.png" class="img-circle" alt="User Image">
+                    <?php if (Yii::$app->user->isGuest) : ?>
+                        <?= Html::tag('div', Html::a('Login', ['/site/login'], ['class' => ['btn btn-link login text-decoration-none']]), ['class' => ['d-flex']]) ?>
+                    <?php else : ?>
+                        <?= Html::a(Yii::$app->user->identity->username, '#', ['class' => 'btn btn-info text-decoration-none']) ?>
+                    <?php endif; ?>
+                </li>
+                <li class="user-footer">
+                    <div class="d-flex justify-content-between">
+                        <a class="btn btn-default btn-flat" href="<?= Url::to(['site/user']) ?>"><span
+                                    class="fas fa-user-cog"></span> Profil</a>
+                        <?= Html::beginForm(['/site/logout'], 'post', ['class' => 'd-flex'])
+                        . Html::submitButton(
+                            '<i class="fa fa-sign-out-alt"></i> (' . Yii::$app->user->identity->username . ')',
+                            ['class' => 'btn btn-default btn-flat logout text-decoration-none']
+                        )
+                        . Html::endForm(); ?>
+                </li>
+            </ul>
+        </li>
     </ul>
 </nav>
 <!-- /.navbar -->

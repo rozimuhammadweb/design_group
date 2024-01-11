@@ -29,12 +29,30 @@ $this->params['breadcrumbs'][] = $this->title;
                 'model' => $model,
                 'attributes' => [
                     'id',
+                    'title',
+                    'short_description',
+                    'description',
                     'successful_project',
                     'regular_customer',
                     'quality_service',
-                    'status',
-                    'created_by',
-                    'updated_by',
+                    [
+                        'attribute' => 'status',
+                        'value' => function ($model) {
+                            return $model->status == 1 ? 'Active' : 'In Active';
+                        },
+                    ],
+                    [
+                        'attribute' => 'created_by',
+                        'value' => function ($model) {
+                            return $model->createdByUser ? $model->createdByUser->username : 'N/A';
+                        },
+                    ],
+                    [
+                        'attribute' => 'updated_by',
+                        'value' => function ($model) {
+                            return $model->createdByUser ? $model->createdByUser->username : 'N/A';
+                        },
+                    ],
 
                 ],
             ]) ?>

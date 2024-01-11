@@ -82,12 +82,11 @@ class SettingLangController extends Controller
         ]);
     }
 
+
     /**
-     * Updates an existing SettingLang model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
+     * @param $id
      * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException
      */
     public function actionUpdate($id)
     {

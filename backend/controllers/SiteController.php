@@ -3,10 +3,13 @@
 namespace backend\controllers;
 
 use common\models\LoginForm;
+use common\models\User;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ErrorAction;
+use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
 /**
@@ -28,7 +31,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'user', 'password'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -50,7 +53,7 @@ class SiteController extends Controller
     {
         return [
             'error' => [
-                'class' => \yii\web\ErrorAction::class,
+                'class' => ErrorAction::class,
             ],
         ];
     }
@@ -63,6 +66,44 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    public function actionUser()
+    {
+        $id = Yii::$app->user->id;
+        $model = User::findOne($id);
+
+        if (!$model) {
+            throw new NotFoundHttpException('User not found.');
+        }
+
+        $model->scenario = 'profile';
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', 'Ma\'lumotlar yangilandi.');
+            return $this->refresh();
+        }
+
+        return $this->render('user/user', ['model' => $model]);
+    }
+
+    public function actionPassword()
+    {
+        $id = Yii::$app->user->id;
+        $model = User::findOne($id);
+
+        if (!$model) {
+            throw new NotFoundHttpException('User not found.');
+        }
+
+        $model->scenario = 'changePassword';
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', 'Parol muvaffaqiyatli yangilandi.');
+            return $this->goBack();
+        }
+
+        return $this->render('user/password', ['model' => $model]);
     }
 
     /**
