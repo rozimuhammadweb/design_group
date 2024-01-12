@@ -10,9 +10,6 @@ $this->title = 'Sozlamalar';
 $this->params['breadcrumbs'][] = ['label' => 'Sozlamalar', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
-
-
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

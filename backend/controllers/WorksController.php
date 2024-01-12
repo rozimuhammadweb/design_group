@@ -2,22 +2,36 @@
 
 namespace backend\controllers;
 
-use common\models\Settings;
-use common\models\SettingsSearch;
-use Yii;
+use common\models\Works;
+use common\models\WorksSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use Yii;
 
-
-class SettingsController extends Controller
+/**
+ * WorksController implements the CRUD actions for Works model.
+ */
+class WorksController extends Controller
 {
-
+    /**
+     * @inheritDoc
+     */
     public function behaviors()
     {
-        return [
-            'access' => [
+        return array_merge(
+            parent::behaviors(),
+            [
+                'verbs' => [
+                    'class' => VerbFilter::className(),
+                    'actions' => [
+                        'delete' => ['POST'],
+                    ],
+                ],
+
+                'access' => [
                     'class' => AccessControl::class,
                     'only' => ['index', 'view', 'create', 'update', 'delete'],
                     'rules' => [
@@ -27,15 +41,20 @@ class SettingsController extends Controller
                             'roles' => ['@'],
                         ],
                     ],
-            ],
-        ];
+                ],
+            ]
+        );
     }
 
+    /**
+     * Lists all Works models.
+     *
+     * @return string
+     */
     public function actionIndex()
     {
-        $searchModel = new SettingsSearch();
+        $searchModel = new WorksSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -43,7 +62,12 @@ class SettingsController extends Controller
         ]);
     }
 
-
+    /**
+     * Displays a single Works model.
+     * @param int $id ID
+     * @return string
+     * @throws NotFoundHttpException if the model cannot be found
+     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -51,16 +75,19 @@ class SettingsController extends Controller
         ]);
     }
 
-
-
+    /**
+     * Creates a new Works model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return string|\yii\web\Response
+     */
     public function actionCreate()
     {
-        $model = new Settings();
+        $model = new Works();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->logo = UploadedFile::getInstance($model, 'imageFiles');
+            $model->image = UploadedFile::getInstance($model, 'imageFile');
             if ($model->save()) {
-                if ($model->imageFiles) {
+                if ($model->imageFile) {
                     $model->setScenario('insert');
                 }
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -72,6 +99,13 @@ class SettingsController extends Controller
         ]);
     }
 
+    /**
+     * Updates an existing Works model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param int $id ID
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -87,7 +121,13 @@ class SettingsController extends Controller
         ]);
     }
 
-
+    /**
+     * Deletes an existing Works model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param int $id ID
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -95,10 +135,16 @@ class SettingsController extends Controller
         return $this->redirect(['index']);
     }
 
-
+    /**
+     * Finds the Works model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param int $id ID
+     * @return Works the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
     protected function findModel($id)
     {
-        if (($model = Settings::findOne(['id' => $id])) !== null) {
+        if (($model = Works::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

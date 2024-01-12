@@ -61,6 +61,13 @@ use yii\helpers\Url;
                             Nega biz?
                         </p>
                     </a>
+                </li><li class="nav-item">
+                    <a href="<?= Url::to(['/works']) ?>" class="nav-link">
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
+                        <p class="pl-2">
+                            Bizning ishlar
+                        </p>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="<?= Url::to(['/about']) ?>" class="nav-link">
