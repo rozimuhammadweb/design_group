@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use common\models\WhyUs;
 use common\models\WhyUsSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -20,17 +21,19 @@ class WhyUsController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'only' => ['index', 'view', 'create', 'update', 'delete', 'images'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
                     ],
                 ],
-            ]
-        );
+            ],
+        ];
     }
 
 

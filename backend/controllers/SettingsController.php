@@ -36,7 +36,6 @@ class SettingsController extends Controller
         $searchModel = new SettingsSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

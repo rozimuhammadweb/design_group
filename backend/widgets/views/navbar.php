@@ -65,14 +65,13 @@ use yii\helpers\Url;
                 </li>
                 <li class="user-footer">
                     <div class="d-flex justify-content-between">
-                        <a class="btn btn-default btn-flat" href="<?= Url::to(['site/user']) ?>"><span
-                                    class="fas fa-user-cog"></span> Profil</a>
-                        <?= Html::beginForm(['/site/logout'], 'post', ['class' => 'd-flex'])
-                        . Html::submitButton(
-                            '<i class="fa fa-sign-out-alt"></i> (' . Yii::$app->user->identity->username . ')',
-                            ['class' => 'btn btn-default btn-flat logout text-decoration-none']
-                        )
-                        . Html::endForm(); ?>
+                        <?php if (Yii::$app->user->isGuest) : ?>
+                            <?= Html::tag('div', Html::a('Login', ['/site/login'], ['class' => ['btn btn-link login text-decoration-none']]), ['class' => ['d-flex']]) ?>
+                        <?php else : ?>
+                            <a class="btn btn-default btn-flat" href="<?= Url::to(['site/user']) ?>"><span  class="fas fa-user-cog"></span> Profil</a>
+                            <?= Html::beginForm(['/site/logout'], 'post', ['class' => 'd-flex']) . Html::submitButton('<i class="fa fa-sign-out-alt"></i> (' . Yii::$app->user->identity->username . ')', ['class' => 'btn btn-default btn-flat logout text-decoration-none']) . Html::endForm(); ?>
+                        <?php endif; ?>
+                    </div>
                 </li>
             </ul>
         </li>
