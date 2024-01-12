@@ -56,7 +56,7 @@ use yii\widgets\MaskedInput;
                 </div>
             </div>
             <div class="form-group d-flex justify-content-end">
-                <?= Html::submitButton('Save', ['class' => 'btn btn-success  ml-2 px-5']) ?>
+                <?= Html::submitButton('Saqlash', ['class' => 'btn btn-primary  ml-2 px-5']) ?>
             </div>
             <?php ActiveForm::end(); ?>
 

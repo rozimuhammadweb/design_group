@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="card-body">
         <div class="about-index">
             <p>
-                <?= Html::a('<i class="fa fa-plus"></i>', ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('<i class="fa fa-plus"></i>', ['create'], ['class' => 'btn btn-primary']) ?>
             </p>
 
             <?php Pjax::begin(); ?>

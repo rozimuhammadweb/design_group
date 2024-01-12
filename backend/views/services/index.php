@@ -1,6 +1,6 @@
 <?php
 
-use common\models\Settings;
+use common\models\Services;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -8,15 +8,15 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 
 /** @var yii\web\View $this */
-/** @var common\models\SettingsSearch $searchModel */
+/** @var common\models\ServicesSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Settings';
+$this->title = 'Bizning xizmatlarimiz';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="card card-primary card-outline ">
     <div class="card-body">
-        <div class="settings-index">
+        <div class="services-index">
             <p>
                 <?= Html::a('<i class="fa fa-plus"></i>', ['create'], ['class' => 'btn btn-primary  ']) ?>
             </p>
@@ -28,19 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    'company_info_uz',
-                    'address_uz',
-                    'working_time_uz',
-                    'number',
-                    'email:email',
-                    [
-                        'attribute' => 'logo',
-                        'format' => 'raw',
-                        'value' => function ($model) {
-                            return Html::img($model->getUploadUrl('logo'), ['class' => 'img-thumbnail', 'style' => 'width:200px ']);
-                        },
-                    ],
-
+                    'title',
+                    'short_description',
+                    'description',
+                    'image',
                     [
                         'attribute' => 'status',
                         'value' => function ($model) {
@@ -51,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'class' => ActionColumn::className(),
-                        'urlCreator' => function ($action, Settings $model, $key, $index, $column) {
+                        'urlCreator' => function ($action, Services $model, $key, $index, $column) {
                             return Url::toRoute([$action, 'id' => $model->id]);
                         }
                     ],
@@ -59,8 +50,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ]); ?>
 
             <?php Pjax::end(); ?>
-
         </div>
-
     </div>
 </div>

@@ -2,17 +2,17 @@
 
 namespace backend\controllers;
 
-use common\models\About;
-use common\models\AboutSearch;
+use common\models\Services;
+use common\models\ServicesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use zxbodya\yii2\galleryManager\GalleryManagerAction;
+use yii\web\UploadedFile;
 
 /**
- * AboutController implements the CRUD actions for About model.
+ * ServicesController implements the CRUD actions for Services model.
  */
-class AboutController extends Controller
+class ServicesController extends Controller
 {
     /**
      * @inheritDoc
@@ -32,27 +32,14 @@ class AboutController extends Controller
         );
     }
 
-    public function actions()
-    {
-        return [
-            'galleryApi' => [
-                'class' => GalleryManagerAction::className(),
-                // mappings between type names and model classes (should be the same as in behaviour)
-                'types' => [
-                    'about' => About::class
-                ]
-            ],
-        ];
-    }
-
     /**
-     * Lists all About models.
+     * Lists all Services models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new AboutSearch();
+        $searchModel = new ServicesSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -62,7 +49,7 @@ class AboutController extends Controller
     }
 
     /**
-     * Displays a single About model.
+     * Displays a single Services model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -75,16 +62,18 @@ class AboutController extends Controller
     }
 
     /**
-     * Creates a new About model.
+     * Creates a new Services model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new About();
+        $model = new Services();
 
         if ($this->request->isPost) {
+            $model->image = UploadedFile::getInstance($model, 'imageFile');
             if ($model->load($this->request->post()) && $model->save()) {
+                $model->setScenario('insert');
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -97,7 +86,7 @@ class AboutController extends Controller
     }
 
     /**
-     * Updates an existing About model.
+     * Updates an existing Services model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -106,8 +95,10 @@ class AboutController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $model->image = UploadedFile::getInstance($model, 'imageFile');
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            $model->setScenario('update');
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -117,7 +108,7 @@ class AboutController extends Controller
     }
 
     /**
-     * Deletes an existing About model.
+     * Deletes an existing Services model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -131,33 +122,18 @@ class AboutController extends Controller
     }
 
     /**
-     * Finds the About model based on its primary key value.
+     * Finds the Services model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return About the loaded model
+     * @return Services the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = About::findOne(['id' => $id])) !== null) {
+        if (($model = Services::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    /**
-     * @param $id
-     * @return string
-     * @throws NotFoundHttpException
-     */
-    public function actionImages($id)
-    {
-
-        $model = $this->findModel($id);
-
-        return $this->render('images', [
-            'model' => $model
-        ]);
     }
 }
