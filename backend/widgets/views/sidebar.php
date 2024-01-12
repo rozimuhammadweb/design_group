@@ -68,6 +68,13 @@ use yii\helpers\Url;
                             Bizning ishlar
                         </p>
                     </a>
+                </li><li class="nav-item">
+                    <a href="<?= Url::to(['/gallery']) ?>" class="nav-link">
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
+                        <p class="pl-2">
+                            Galereya
+                        </p>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="<?= Url::to(['/about']) ?>" class="nav-link">
