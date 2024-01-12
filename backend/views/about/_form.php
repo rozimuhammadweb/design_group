@@ -2,6 +2,7 @@
 
 use kartik\switchinput\SwitchInput;
 use yii\helpers\Html;
+use mihaildev\ckeditor\CKEditor;
 use gofuroov\multilingual\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
@@ -17,13 +18,28 @@ use gofuroov\multilingual\widgets\ActiveForm;
                     <?= $form->languageSwitcher($model) ?>
                 </div>
                 <div class="col-md-12">
-                    <?= $form->field($model, 'title')->textarea(['maxlength' => true, 'rows' => 6,]) ?>
+                    <?= $form->field($model, 'title')->widget(CKEditor::className(),[
+                        'editorOptions' => [
+                            'preset' => '4', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+                            'inline' => false, //по умолчанию false
+                        ],
+                    ]); ?>
                 </div>
                 <div class="col-md-12">
-                    <?= $form->field($model, 'short_description')->textarea(['maxlength' => true, 'rows' => 6,]) ?>
+                    <?= $form->field($model, 'short_description')->widget(CKEditor::className(),[
+                        'editorOptions' => [
+                            'preset' => '4', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+                            'inline' => false, //по умолчанию false
+                        ],
+                    ]); ?>
                 </div>
                 <div class="col-md-12">
-                    <?= $form->field($model, 'description')->textarea(['maxlength' => true, 'rows' => 6,]) ?>
+                    <?= $form->field($model, 'description')->widget(CKEditor::className(),[
+                        'editorOptions' => [
+                            'preset' => '4', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+                            'inline' => false, //по умолчанию false
+                        ],
+                    ]); ?>
                 </div>
                 <div class="col-6">
                     <?= $form->field($model, 'successful_project')->textInput() ?>

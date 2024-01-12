@@ -5,6 +5,7 @@ use kartik\switchinput\SwitchInput;
 use yii\helpers\Html;
 use gofuroov\multilingual\widgets\ActiveForm;
 use yii\widgets\MaskedInput;
+use mihaildev\ckeditor\CKEditor;
 
 /** @var yii\web\View $this */
 /** @var common\models\Settings $model */
@@ -20,16 +21,31 @@ use yii\widgets\MaskedInput;
                     <?= $form->languageSwitcher($model) ?>
 
                 </div>
-                <div class="col-12">
-                    <?= $form->field($model, 'company_info')->textarea(['maxlength' => true, 'rows' => 6, 'placeholder' => 'Company Info (Uzbek)']) ?>
+                <div class="col-md-12">
+                    <?= $form->field($model, 'company_info')->widget(CKEditor::className(), [
+                        'editorOptions' => [
+                            'preset' => '4', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+                            'inline' => false, //по умолчанию false
+                        ],
+                    ]); ?>
                 </div>
 
-                <div class="col-12">
-                    <?= $form->field($model, 'address')->textarea(['maxlength' => true, 'rows' => 6, 'placeholder' => 'Address (Uzbek)']) ?>
+                <div class="col-md-12">
+                    <?= $form->field($model, 'address')->widget(CKEditor::className(), [
+                        'editorOptions' => [
+                            'preset' => '4', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+                            'inline' => false, //по умолчанию false
+                        ],
+                    ]); ?>
                 </div>
 
-                <div class="col-12">
-                    <?= $form->field($model, 'working_time')->textarea(['maxlength' => true, 'rows' => 6, 'placeholder' => 'Working Time (Uzbek)']) ?>
+                <div class="col-md-12">
+                    <?= $form->field($model, 'working_time')->widget(CKEditor::className(), [
+                        'editorOptions' => [
+                            'preset' => 'basic', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+                            'inline' => false,
+                        ],
+                    ]); ?>
                 </div>
 
                 <div class="col-6">

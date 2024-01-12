@@ -15,7 +15,11 @@ class m240108_081413_create_settings_table extends Migration
             'number' => $this->string(20),
             'email' => $this->string(),
             'logo' => $this->string(),
-            'status' => $this->boolean()->defaultValue(false)
+            'status' => $this->boolean()->defaultValue(true),
+            'created_by' => $this->integer(),
+            'updated_by' => $this->integer(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer(),
         ]);
         $this->createTable('{{%settings_lang}}', [
             'id' => $this->primaryKey(),

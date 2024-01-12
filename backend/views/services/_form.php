@@ -3,6 +3,7 @@
 use gofuroov\multilingual\widgets\ActiveForm;
 use kartik\file\FileInput;
 use kartik\switchinput\SwitchInput;
+use mihaildev\ckeditor\CKEditor;
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
@@ -18,14 +19,29 @@ use yii\helpers\Html;
                     <?= $form->languageSwitcher($model) ?>
                 </div>
 
-                <div class="col-12">
-                    <?= $form->field($model, 'title')->textarea(['maxlength' => true, 'rows' => 6, 'placeholder' => 'Address (Uzbek)']) ?>
+                <div class="col-md-12">
+                    <?= $form->field($model, 'title')->widget(CKEditor::className(),[
+                        'editorOptions' => [
+                            'preset' => '6', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+                            'inline' => false, //по умолчанию false
+                        ],
+                    ]); ?>
                 </div>
-                <div class="col-12">
-                    <?= $form->field($model, 'short_description')->textarea(['maxlength' => true, 'rows' => 6, 'placeholder' => 'Address (Uzbek)']) ?>
+                <div class="col-md-12">
+                    <?= $form->field($model, 'short_description')->widget(CKEditor::className(),[
+                        'editorOptions' => [
+                            'preset' => '4', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+                            'inline' => false, //по умолчанию false
+                        ],
+                    ]); ?>
                 </div>
-                <div class="col-12">
-                    <?= $form->field($model, 'description')->textarea(['maxlength' => true, 'rows' => 6, 'placeholder' => 'Address (Uzbek)']) ?>
+                <div class="col-md-12">
+                    <?= $form->field($model, 'description')->widget(CKEditor::className(),[
+                        'editorOptions' => [
+                            'preset' => '4', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+                            'inline' => false, //по умолчанию false
+                        ],
+                    ]); ?>
                 </div>
                 <div class="col-12">
                     <?= $form->field($model, 'imageFile')->widget(FileInput::class, [

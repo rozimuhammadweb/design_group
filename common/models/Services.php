@@ -86,9 +86,9 @@ class Services extends \yii\db\ActiveRecord
             'short_description' => 'Qizqa tavsifi',
             'description' => 'Tavsifi',
             'image' => 'Rasm',
-            'status' => 'Status',
-            'created_by' => 'Created By',
-            'updated_by' => 'Updated By',
+            'status' => 'Statusi',
+            'created_by' => 'Yaratdi',
+            'updated_by' => 'Tahrirladi',
             'created_at' => 'Yaratilgan',
             'updated_at' => 'Yangilangan',
         ];

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /** @var common\models\Services $model */
 
 $this->title = 'Xizmatlarni yaratish';
-$this->params['breadcrumbs'][] = ['label' => 'Services', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Xizmatlar', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

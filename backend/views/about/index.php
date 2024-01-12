@@ -11,7 +11,7 @@ use yii\widgets\Pjax;
 /** @var common\models\AboutSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Abouts';
+$this->title = 'Biz haqimizda';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="card card-primary card-outline ">
@@ -29,9 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    'title_uz',
-                    'short_description_uz',
-                    'description_uz',
+                    'title_uz:raw',
+                    'short_description_uz:raw',
+                    'description_uz:raw',
                     [
                         'attribute' => 'image',
                         'format' => 'raw',

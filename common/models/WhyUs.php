@@ -8,30 +8,30 @@ use gofuroov\multilingual\db\MultilingualLabelsTrait;
 use gofuroov\multilingual\db\MultilingualQuery;
 use Imagine\Image\Box;
 use Imagine\Image\ImageInterface;
+use mohorev\file\UploadImageBehavior;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
-use yii\db\ActiveRecord;
 use zxbodya\yii2\galleryManager\GalleryBehavior;
 
 /**
- * This is the model class for table "about".
+ * This is the model class for table "why_us".
  *
  * @property int $id
- * @property int|null $successful_project
- * @property int|null $regular_customer
- * @property int|null $quality_service
+ * @property string|null $image
  * @property int|null $status
- * @property int $created_by
- * @property string|null $created_at
- * @property string $updated_by
- * @property string|null $updated_at
+ * @property int|null $created_by
+ * @property int|null $updated_by
+ * @property int|null $created_at
+ * @property int|null $updated_at
  *
+ * @property WhyUsLang[] $whyUsLangs
  */
-class About extends ActiveRecord
+class WhyUs extends \yii\db\ActiveRecord
 {
 
+    public $imageFile;
     use MultilingualLabelsTrait;
 
     /**
@@ -39,21 +39,7 @@ class About extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'about';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
-    {
-        return [
-            [['successful_project', 'regular_customer', 'quality_service', 'status'], 'integer'],
-            [['successful_project', 'regular_customer', 'quality_service'], 'required'],
-            [['title', 'short_description', 'description'], 'string', 'max' => 255],
-            [['created_by', 'updated_by'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
-        ];
+        return 'why_us';
     }
 
     public function behaviors()
@@ -65,16 +51,16 @@ class About extends ActiveRecord
             ],
             'galleryBehavior' => [
                 'class' => GalleryBehavior::className(),
-                'type' => 'about',
+                'type' => 'why-us',
                 'extension' => 'jpg',
-                'directory' => Yii::getAlias('@frontend/web') . '/images/about/gallery',
-                'url' => '/images/about/gallery',
+                'directory' => Yii::getAlias('@frontend/web') . '/images/why-us/gallery',
+                'url' => '/images/why-us/gallery',
                 'versions' => [
                     'small' => function ($img) {
                         /** @var ImageInterface $img */
                         return $img
                             ->copy()
-                            ->thumbnail(new Box(200, 200));
+                            ->thumbnail(new Box(70, 70));
                     },
                     'medium' => function ($img) {
                         /** @var ImageInterface $img */
@@ -96,9 +82,31 @@ class About extends ActiveRecord
                     'ru' => 'Русский',
                     'en' => "English",
                 ],
-                'attributes' => ['title', 'short_description', 'description',],
+                'attributes' => ['title', 'short_description',],
 
             ],
+            [
+                'class' => UploadImageBehavior::class,
+                'attribute' => 'image',
+                'scenarios' => ['default', 'create'],
+                'path' => '@frontend/web/uploads/why-us/{id}',
+                'url' => '/uploads/why-us/{id}',
+                'thumbs' => [
+                    'thumb' => ['width' => 570, 'height' => 590],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['title', 'short_description'], 'required'],
+            [['status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'on' => ['insert', 'update']],
         ];
     }
 
@@ -111,11 +119,8 @@ class About extends ActiveRecord
             'id' => 'ID',
             'title' => 'Sarlavha',
             'short_description' => 'Qisqa tavsifi',
-            'description' => 'Tavsifi',
-            'successful_project' => 'Muvaffaqiyatli loyiha',
-            'regular_customer' => 'Doimiy mijozlar',
-            'quality_service' => 'Sifatli xizmat',
-            'status' => 'Status',
+            'image' => 'Asosiy rasm',
+            'status' => 'Statusi',
             'created_by' => 'Yaratdi',
             'updated_by' => 'Tahrirladi',
             'created_at' => 'Yaratilgan',
@@ -123,13 +128,14 @@ class About extends ActiveRecord
         ];
     }
 
+
     /**
      * @return ActiveQuery
      */
     public function getGalleryImages()
     {
         return $this->hasMany(GalleryImage::class, ['ownerId' => 'id'])
-            ->andWhere(['type' => 'about'])
+            ->andWhere(['type' => 'why-us'])
             ->orderBy('rank ASC');
     }
 
@@ -149,7 +155,7 @@ class About extends ActiveRecord
         $images = $this->galleryImagesAsArray;
         $result = [];
         foreach ($images as $image) {
-            $result[] = "/images/about/gallery/$this->id/" . $image['id'] . "/$type.jpg";
+            $result[] = "/images/why-us/gallery/$this->id/" . $image['id'] . "/$type.jpg";
         }
         return $result;
 
@@ -184,5 +190,4 @@ class About extends ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'updated_by']);
     }
-
 }

@@ -48,11 +48,21 @@ use yii\helpers\Url;
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
                     <a href="<?= Url::to(['/services']) ?>" class="nav-link">
-                        <i class="fa fa-align-justify" aria-hidden="true"></i>                        <p class="pl-2">
+                        <i class="fa fa-align-justify" aria-hidden="true"></i>
+                        <p class="pl-2">
                             Bizning xizmatlar
                         </p>
                     </a>
-                </li><li class="nav-item">
+                </li>
+                <li class="nav-item">
+                    <a href="<?= Url::to(['/why-us']) ?>" class="nav-link">
+                        <i class="fa fa-question" aria-hidden="true"></i>
+                        <p class="pl-2">
+                            Nega biz?
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="<?= Url::to(['/about']) ?>" class="nav-link">
                         <i class="fa fa-info " aria-hidden="true"></i>
                         <p class="pl-2">

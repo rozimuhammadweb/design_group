@@ -6,6 +6,8 @@ use gofuroov\multilingual\behaviors\MultilingualBehavior;
 use gofuroov\multilingual\db\MultilingualLabelsTrait;
 use gofuroov\multilingual\db\MultilingualQuery;
 use mohorev\file\UploadImageBehavior;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 
 
 /**
@@ -29,6 +31,10 @@ class Settings extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
+            TimestampBehavior::class,
+            'blameable' => [
+                'class' => BlameableBehavior::class,
+            ],
             [
                 'class' => UploadImageBehavior::class,
                 'attribute' => 'logo',
@@ -67,6 +73,8 @@ class Settings extends \yii\db\ActiveRecord
             [['status'], 'integer'],
             [['number'], 'string', 'max' => 20],
             [['email'], 'string', 'max' => 255],
+            [['created_by', 'updated_by'], 'integer'],
+            [['created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -82,11 +90,12 @@ class Settings extends \yii\db\ActiveRecord
             'company_info' => 'Kompaniya ma\'lumotlari',
             'working_time' => 'Ish jadvali',
             'address' => 'Manzil',
+            'created_by' => 'Yaratdi',
+            'updated_by' => 'Tahrirladi',
+            'created_at' => 'Yaratilgan',
+            'updated_at' => 'Yangilangan',
         ];
     }
-
-
-
 
     public static function find()
     {
@@ -94,5 +103,20 @@ class Settings extends \yii\db\ActiveRecord
         return $query->multilingual();
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCreatedByUser()
+    {
+        return $this->hasOne(User::class, ['id' => 'created_by']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUpdatedByUser()
+    {
+        return $this->hasOne(User::class, ['id' => 'updated_by']);
+    }
 
 }

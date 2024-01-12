@@ -4,22 +4,22 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var common\models\Services $model */
+/** @var common\models\WhyUs $model */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Xizmatlar', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Nega biz', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="card card-primary card-outline ">
+<div class="card card-primary card-outline">
     <div class="card-body">
-        <div class="services-view">
+        <div class="why-us-view">
             <p>
                 <?= Html::a('Tahrirlash', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
                 <?= Html::a('O\'chirish', ['delete', 'id' => $model->id], [
                     'class' => 'btn btn-danger',
                     'data' => [
-                        'confirm' => 'Haqiqatan ham bu ma\'lumotni oʻchirib tashlamoqchimisiz?',
+                        'confirm' => 'Haqiqatan ham bu ma\'lumotni oʻchirib tashlamoqchimisiz??',
                         'method' => 'post',
                     ],
                 ]) ?>
@@ -31,7 +31,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id',
                     'title:raw',
                     'short_description:raw',
-                    'description:raw',
                     [
                         'attribute' => 'image',
                         'format' => 'raw',
