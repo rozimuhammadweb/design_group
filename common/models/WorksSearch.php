@@ -18,7 +18,7 @@ class WorksSearch extends Works
     {
         return [
             [['id', 'status', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
-            [['image'], 'safe'],
+            [['image', 'title'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class WorksSearch extends Works
      */
     public function search($params)
     {
-        $query = Works::find();
+        $query = Works::find()->joinWith('translation');
 
         // add conditions that should always apply here
 
@@ -66,7 +66,8 @@ class WorksSearch extends Works
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'image', $this->image]);
+        $query->andFilterWhere(['like', 'image', $this->image])
+            ->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;
     }

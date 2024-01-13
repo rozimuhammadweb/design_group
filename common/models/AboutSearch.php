@@ -18,7 +18,7 @@ class AboutSearch extends About
     {
         return [
             [['id', 'successful_project', 'regular_customer', 'quality_service', 'status', 'created_by'], 'integer'],
-            [['created_at', 'updated_by', 'updated_at'], 'safe'],
+            [['created_at', 'updated_by', 'updated_at', 'title', 'short_description', 'description'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class AboutSearch extends About
      */
     public function search($params)
     {
-        $query = About::find();
+        $query = About::find()->joinWith('translation');
 
         // add conditions that should always apply here
 
@@ -67,7 +67,9 @@ class AboutSearch extends About
             'created_at' => $this->created_at,
             'updated_by' => $this->updated_by,
             'updated_at' => $this->updated_at,
-        ]);
+        ])->andFilterWhere(['like', 'title', $this->title])
+        ->andFilterWhere(['like', 'short_description', $this->short_description])
+        ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

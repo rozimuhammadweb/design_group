@@ -24,7 +24,7 @@ use yii\behaviors\TimestampBehavior;
 class Settings extends \yii\db\ActiveRecord
 {
 
-    public $imageFiles;
+    public $imageFile;
 
     use MultilingualLabelsTrait;
 
@@ -68,7 +68,7 @@ class Settings extends \yii\db\ActiveRecord
     {
         return [
             [['number', 'email', 'company_info'], 'required'],
-            [['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'on' => ['insert', 'update']],
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'on' => ['insert', 'update']],
             [['company_info', 'address', 'working_time'], 'string', 'max' => 255],
             [['status'], 'integer'],
             [['number'], 'string', 'max' => 20],

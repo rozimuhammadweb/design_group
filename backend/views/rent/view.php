@@ -1,20 +1,19 @@
 <?php
 
-use yii\bootstrap4\Breadcrumbs;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var common\models\Settings $model */
+/** @var common\models\Rent $model */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Sozlamalar', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Rents', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="card card-primary card-outline ">
     <div class="card-body">
-        <div class="settings-view">
+        <div class="rent-view">
             <p>
                 <?= Html::a('Tahrirlash', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
                 <?= Html::a('O\'chirish', ['delete', 'id' => $model->id], [
@@ -25,26 +24,23 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                 ]) ?>
             </p>
+
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
-                    'company_info',
-                    'working_time',
-                    'address',
-                    'number',
-                    'email:email',
-                    [
-                        'attribute' => 'logo',
-                        'format' => 'raw',
-                        'value' => function ($model) {
-                            return Html::img($model->getUploadUrl('logo'), ['class' => 'img-thumbnail', 'style' => 'width:200px ']);
-                        },
-                    ],
+                    'id',
+                    'cost',
+                    'title',
+                    'type',
+                    'is_popular',
+                    'short_description',
                     [
                         'attribute' => 'status',
                         'value' => function ($model) {
-                            return $model->status == 1 ? 'Active' : 'In Active';
+                            $text = $model->status == 1 ? 'Active' : 'In Active';
+                            return "<span class='btn btn-success'>{$text}</span>";
                         },
+                        'format' => 'html',
                     ],
                     [
                         'attribute' => 'created_by',

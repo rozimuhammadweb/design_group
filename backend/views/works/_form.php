@@ -19,12 +19,7 @@ use kartik\file\FileInput;
                     <?= $form->languageSwitcher($model) ?>
                 </div>
                 <div class="col-md-12">
-                    <?= $form->field($model, 'title')->widget(CKEditor::className(), [
-                        'editorOptions' => [
-                            'preset' => '4', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
-                            'inline' => false, //по умолчанию false
-                        ],
-                    ]); ?>
+                    <?= $form->field($model, 'title')->textarea(['rows' =>2]); ?>
                 </div>
                 <div class="col-12">
                     <?= $form->field($model, 'imageFile')->widget(FileInput::class, [

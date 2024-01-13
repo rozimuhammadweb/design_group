@@ -22,30 +22,15 @@ use mihaildev\ckeditor\CKEditor;
 
                 </div>
                 <div class="col-md-12">
-                    <?= $form->field($model, 'company_info')->widget(CKEditor::className(), [
-                        'editorOptions' => [
-                            'preset' => '4', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
-                            'inline' => false, //по умолчанию false
-                        ],
-                    ]); ?>
+                    <?= $form->field($model, 'company_info')->textarea(['rows' => 3]); ?>
                 </div>
 
                 <div class="col-md-12">
-                    <?= $form->field($model, 'address')->widget(CKEditor::className(), [
-                        'editorOptions' => [
-                            'preset' => '4', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
-                            'inline' => false, //по умолчанию false
-                        ],
-                    ]); ?>
+                    <?= $form->field($model, 'address')->textarea(['rows' => 3]); ?>
                 </div>
 
                 <div class="col-md-12">
-                    <?= $form->field($model, 'working_time')->widget(CKEditor::className(), [
-                        'editorOptions' => [
-                            'preset' => 'basic', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
-                            'inline' => false,
-                        ],
-                    ]); ?>
+                    <?= $form->field($model, 'working_time')->textarea(['rows' => 3]); ?>
                 </div>
 
                 <div class="col-6">

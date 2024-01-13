@@ -18,20 +18,10 @@ use gofuroov\multilingual\widgets\ActiveForm;
                     <?= $form->languageSwitcher($model) ?>
                 </div>
                 <div class="col-md-12">
-                    <?= $form->field($model, 'title')->widget(CKEditor::className(),[
-                        'editorOptions' => [
-                            'preset' => '4', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
-                            'inline' => false, //по умолчанию false
-                        ],
-                    ]); ?>
+                    <?= $form->field($model, 'title')->textarea(['rows' => 2]); ?>
                 </div>
                 <div class="col-md-12">
-                    <?= $form->field($model, 'short_description')->widget(CKEditor::className(),[
-                        'editorOptions' => [
-                            'preset' => '4', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
-                            'inline' => false, //по умолчанию false
-                        ],
-                    ]); ?>
+                    <?= $form->field($model, 'short_description')->textarea(['rows' => 4]); ?>
                 </div>
                 <div class="col-md-12">
                     <?= $form->field($model, 'description')->widget(CKEditor::className(),[

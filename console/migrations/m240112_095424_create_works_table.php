@@ -26,6 +26,8 @@ class m240112_095424_create_works_table extends Migration
             'id' => $this->primaryKey(),
             'owner_id' => $this->integer()->notNull(),
             'title' => $this->string(),
+            'short_description' => $this->string(),
+            'description' => $this->string(),
             'language' => $this->string(6)->notNull(),
         ]);
 

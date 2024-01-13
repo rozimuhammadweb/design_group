@@ -18,7 +18,7 @@ class ServicesSearch extends Services
     {
         return [
             [['id', 'status'], 'integer'],
-            [['image'], 'safe'],
+            [['image','title','short_description', 'description'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class ServicesSearch extends Services
      */
     public function search($params)
     {
-        $query = Services::find();
+        $query = Services::find()->joinWith('translation');
 
         // add conditions that should always apply here
 
@@ -62,7 +62,10 @@ class ServicesSearch extends Services
             'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'image', $this->image]);
+        $query->andFilterWhere(['like', 'image', $this->image])
+        ->andFilterWhere(['like','services_lang.title',$this->title])
+        ->andFilterWhere(['like','services_lang.short_description',$this->short_description])
+        ->andFilterWhere(['like','services_lang.description',$this->description]);
 
         return $dataProvider;
     }

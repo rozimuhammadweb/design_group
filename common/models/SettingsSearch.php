@@ -18,7 +18,7 @@ class SettingsSearch extends Settings
     {
         return [
             [['id', 'status'], 'integer'],
-            [['number', 'email', 'logo'], 'safe'],
+            [['number', 'email', 'logo', 'company_info', 'address', 'working_time'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class SettingsSearch extends Settings
      */
     public function search($params)
     {
-        $query = Settings::find();
+        $query = Settings::find()->joinWith('translation');
 
         // add conditions that should always apply here
 
@@ -64,6 +64,9 @@ class SettingsSearch extends Settings
 
         $query->andFilterWhere(['like', 'number', $this->number])
             ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'company_info', $this->company_info])
+            ->andFilterWhere(['like', 'address', $this->address])
+            ->andFilterWhere(['like', 'working_time', $this->working_time])
             ->andFilterWhere(['like', 'logo', $this->logo]);
 
         return $dataProvider;

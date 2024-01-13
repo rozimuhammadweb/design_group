@@ -27,7 +27,7 @@ class WhyUsController extends Controller
                 'only' => ['index', 'view', 'create', 'update', 'delete', 'images'],
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete','images'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],

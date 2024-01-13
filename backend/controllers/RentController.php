@@ -2,32 +2,30 @@
 
 namespace backend\controllers;
 
-use common\models\About;
-use common\models\AboutSearch;
+use common\models\Rent;
+use common\models\search\RentSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use zxbodya\yii2\galleryManager\GalleryManagerAction;
 
 /**
- * AboutController implements the CRUD actions for About model.
+ * RentController implements the CRUD actions for Rent model.
  */
-class AboutController extends Controller
+class RentController extends Controller
 {
     /**
      * @inheritDoc
      */
     public function behaviors()
     {
-
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['index', 'view', 'create', 'update', 'delete', 'images'],
+                'only' => ['index', 'view', 'create', 'update', 'delete'],
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete','images'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -36,27 +34,14 @@ class AboutController extends Controller
         ];
     }
 
-    public function actions()
-    {
-        return [
-            'galleryApi' => [
-                'class' => GalleryManagerAction::className(),
-                // mappings between type names and model classes (should be the same as in behaviour)
-                'types' => [
-                    'about' => About::class
-                ]
-            ],
-        ];
-    }
-
     /**
-     * Lists all About models.
+     * Lists all Rent models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new AboutSearch();
+        $searchModel = new RentSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -66,7 +51,7 @@ class AboutController extends Controller
     }
 
     /**
-     * Displays a single About model.
+     * Displays a single Rent model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -79,13 +64,13 @@ class AboutController extends Controller
     }
 
     /**
-     * Creates a new About model.
+     * Creates a new Rent model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new About();
+        $model = new Rent();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -101,7 +86,7 @@ class AboutController extends Controller
     }
 
     /**
-     * Updates an existing About model.
+     * Updates an existing Rent model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -121,7 +106,7 @@ class AboutController extends Controller
     }
 
     /**
-     * Deletes an existing About model.
+     * Deletes an existing Rent model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -135,33 +120,18 @@ class AboutController extends Controller
     }
 
     /**
-     * Finds the About model based on its primary key value.
+     * Finds the Rent model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return About the loaded model
+     * @return Rent the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = About::findOne(['id' => $id])) !== null) {
+        if (($model = Rent::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    /**
-     * @param $id
-     * @return string
-     * @throws NotFoundHttpException
-     */
-    public function actionImages($id)
-    {
-
-        $model = $this->findModel($id);
-
-        return $this->render('images', [
-            'model' => $model
-        ]);
     }
 }

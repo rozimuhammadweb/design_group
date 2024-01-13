@@ -20,39 +20,22 @@ use yii\helpers\Html;
                 </div>
 
                 <div class="col-md-12">
-                    <?= $form->field($model, 'title')->widget(CKEditor::className(),[
-                        'editorOptions' => [
-                            'preset' => '6', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
-                            'inline' => false, //по умолчанию false
-                        ],
-                    ]); ?>
+                    <?= $form->field($model, 'title')->textInput() ?>
                 </div>
                 <div class="col-md-12">
-                    <?= $form->field($model, 'short_description')->widget(CKEditor::className(),[
-                        'editorOptions' => [
-                            'preset' => '4', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
-                            'inline' => false, //по умолчанию false
-                        ],
-                    ]); ?>
+                    <?= $form->field($model, 'short_description')->textarea(['rows' => 4]) ?>
                 </div>
                 <div class="col-md-12">
-                    <?= $form->field($model, 'description')->widget(CKEditor::className(),[
-                        'editorOptions' => [
-                            'preset' => '4', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
-                            'inline' => false, //по умолчанию false
-                        ],
-                    ]); ?>
+                    <?= $form->field($model, 'description')->widget(CKEditor::className(), ['editorOptions' => ['preset' => '4', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+                    'inline' => false, //по умолчанию false
+                    ],]); ?>
                 </div>
                 <div class="col-12">
-                    <?= $form->field($model, 'imageFile')->widget(FileInput::class, [
-                        'options' => ['accept' => 'image/*'],
-                        'pluginOptions' => [
-                            'showPreview' => false,
-                            'showCaption' => true,
-                            'showRemove' => true,
-                            'showUpload' => false,
-                        ],
-                    ])->label('Rasm') ?>
+                    <?= $form->field($model, 'imageFile')->widget(FileInput::class, ['options' => ['accept' => 'image/*'],
+                    'pluginOptions' => ['showPreview' => false,
+                    'showCaption' => true,
+                    'showRemove' => true,
+                    'showUpload' => false,],])->label('Rasm') ?>
 
                 </div>
 

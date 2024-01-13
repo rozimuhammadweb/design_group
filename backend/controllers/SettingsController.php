@@ -57,7 +57,7 @@ class SettingsController extends Controller
         $model = new Settings();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->logo = UploadedFile::getInstance($model, 'imageFiles');
+            $model->logo = UploadedFile::getInstance($model, 'imageFile');
             if ($model->save()) {
                 if ($model->imageFiles) {
                     $model->setScenario('insert');
@@ -74,7 +74,7 @@ class SettingsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $model->image = UploadedFile::getInstance($model, 'imageFile');
+        $model->logo = UploadedFile::getInstance($model, 'imageFile');
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             $model->setScenario('update');
 

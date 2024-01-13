@@ -18,7 +18,7 @@ class WhyUsSearch extends WhyUs
     {
         return [
             [['id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
-            [['image'], 'safe'],
+            [['image', 'title', 'short_description'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class WhyUsSearch extends WhyUs
      */
     public function search($params)
     {
-        $query = WhyUs::find();
+        $query = WhyUs::find()->joinWith('translation');
 
         // add conditions that should always apply here
 
@@ -66,7 +66,9 @@ class WhyUsSearch extends WhyUs
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'image', $this->image]);
+        $query->andFilterWhere(['like', 'image', $this->image])
+            ->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'short_description', $this->short_description]);
 
         return $dataProvider;
     }
