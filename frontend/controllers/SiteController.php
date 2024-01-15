@@ -2,19 +2,19 @@
 
 namespace frontend\controllers;
 
+use common\models\LoginForm;
+use frontend\models\ContactForm;
+use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResendVerificationEmailForm;
+use frontend\models\ResetPasswordForm;
+use frontend\models\SignupForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-use common\models\LoginForm;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
-use frontend\models\ContactForm;
 
 /**
  * Site controller
@@ -146,6 +146,11 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
+    public function actionGallery()
+    {
+        return $this->render('gallery');
+    }
+
     /**
      * Signs user up.
      *
@@ -217,8 +222,8 @@ class SiteController extends Controller
      * Verify email address
      *
      * @param string $token
-     * @throws BadRequestHttpException
      * @return yii\web\Response
+     * @throws BadRequestHttpException
      */
     public function actionVerifyEmail($token)
     {
@@ -256,4 +261,14 @@ class SiteController extends Controller
             'model' => $model
         ]);
     }
+
+    public function actionChangelang($lang)
+    {
+        Yii::$app->language = $lang;
+        Yii::$app->session['lang'] = $lang;
+
+        $referrer = Yii::$app->request->referrer;
+        return $this->redirect($referrer ?: Yii::$app->homeUrl);
+    }
+
 }

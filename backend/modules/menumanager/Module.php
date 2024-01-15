@@ -27,9 +27,10 @@ class Module extends \yii\base\Module
     public function sections()
     {
         return [
-            'site/about' =>'Biz haqimizda',
-            'site/contact' =>"Bog'lanish",
-            'site/work' =>"Bizning ishlar",
+            'site/about' => 'Biz haqimizda',
+            'site/works' => "Bizning ishlar",
+            'site/gallery' => "Galleriya",
+            'site/contact' => "Bog'lanish",
 
         ];
 

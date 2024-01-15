@@ -1,4 +1,7 @@
 <?php
+
+use yii\caching\FileCache;
+
 return [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -16,23 +19,24 @@ return [
     ],
     'components' => [
         'cache' => [
-            'class' => \yii\caching\FileCache::class,
+            'class' => FileCache::class,
         ],
-        'i18n' => [
-            'translations' => [
-                'site*' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@soft/i18n/messages',
-                    'fileMap' => [
-                        'site' => 'site.php',
-                    ],
-                ],
-
-                'app*' => [
-                    'class' => 'yii\i18n\DbMessageSource',
-                ],
-
-            ],
-        ],
+        // last
+//        'i18n' => [
+//            'translations' => [
+//                'site*' => [
+//                    'class' => 'yii\i18n\PhpMessageSource',
+//                    'basePath' => '@soft/i18n/messages',
+//                    'fileMap' => [
+//                        'site' => 'site.php',
+//                    ],
+//                ],
+//
+//                'app*' => [
+//                    'class' => 'yii\i18n\DbMessageSource',
+//                ],
+//
+//            ],
+//        ],
     ],
 ];
