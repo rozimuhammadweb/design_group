@@ -15,7 +15,19 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'language' => 'uz',
-    'modules' => [],
+    'modules' => [
+        'treemanager' =>  [
+            'class' => '\kartik\tree\Module',
+            // other module settings, refer detailed documentation
+        ],
+        'menumanager' => [
+            'class' => 'backend\modules\menumanager\Module'
+        ],
+        'translate-manager' => [
+            'class' => 'wokster\translationmanager\TranslationManager',
+            'languages' => ['en','ru','uz'],
+        ],
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',

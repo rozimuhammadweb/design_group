@@ -24,9 +24,22 @@ use yii\behaviors\TimestampBehavior;
 class Settings extends \yii\db\ActiveRecord
 {
 
+    public const STATUS_ACTIVE = 1;
+    public const STATUS_INACTIVE = 0;
     public $imageFile;
 
     use MultilingualLabelsTrait;
+
+    public static function tableName()
+    {
+        return 'settings';
+    }
+
+    public static function find()
+    {
+        $query = new MultilingualQuery(get_called_class());
+        return $query->multilingual();
+    }
 
     public function behaviors()
     {
@@ -58,12 +71,6 @@ class Settings extends \yii\db\ActiveRecord
         ];
     }
 
-    public static function tableName()
-    {
-        return 'settings';
-    }
-
-
     public function rules()
     {
         return [
@@ -77,7 +84,6 @@ class Settings extends \yii\db\ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
         ];
     }
-
 
     public function attributeLabels()
     {
@@ -95,12 +101,6 @@ class Settings extends \yii\db\ActiveRecord
             'created_at' => 'Yaratilgan',
             'updated_at' => 'Yangilangan',
         ];
-    }
-
-    public static function find()
-    {
-        $query = new MultilingualQuery(get_called_class());
-        return $query->multilingual();
     }
 
     /**

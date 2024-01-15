@@ -46,6 +46,14 @@ use yii\helpers\Url;
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item <?= (Yii::$app->request->url === Url::to(['/about'])) ? 'btn-primary' : '' ?>">
+                    <a href="<?= Url::to(['/about']) ?>" class="nav-link">
+                        <i class="fa fa-info " aria-hidden="true"></i>
+                        <p class="pl-2">
+                            Biz haqimizda
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item <?= (Yii::$app->request->url === Url::to(['/services'])) ? 'btn-primary' : '' ?>">
                     <a href="<?= Url::to(['/services']) ?>" class="nav-link">
                         <i class="fa fa-align-justify" aria-hidden="true"></i>
@@ -70,14 +78,7 @@ use yii\helpers\Url;
                         </p>
                     </a>
                 </li>
-                <li class="nav-item <?= (Yii::$app->request->url === Url::to(['/about'])) ? 'btn-primary' : '' ?>">
-                    <a href="<?= Url::to(['/about']) ?>" class="nav-link">
-                        <i class="fa fa-info " aria-hidden="true"></i>
-                        <p class="pl-2">
-                            Biz haqimizda
-                        </p>
-                    </a>
-                </li>
+
                 <li class="nav-item <?= (Yii::$app->request->url === Url::to(['/settings'])) ? 'btn-primary' : '' ?>">
                     <a href="<?= Url::to(['/settings']) ?>" class="nav-link">
                         <i class="fa fa-cog " aria-hidden="true"></i>
@@ -91,6 +92,14 @@ use yii\helpers\Url;
                         <i class="fa fa-retweet" aria-hidden="true"></i>
                         <p class="pl-1">
                             Ijara
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item <?= (Yii::$app->request->url === Url::to(['/rent-item'])) ? 'btn-primary' : '' ?>">
+                    <a href="<?= Url::to(['/rent-item']) ?>" class="nav-link">
+                        <i class="fa fa-retweet" aria-hidden="true"></i>
+                        <p class="pl-1">
+                            Rent Item
                         </p>
                     </a>
                 </li>

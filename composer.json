@@ -29,7 +29,12 @@
     "kartik-v/yii2-widget-fileinput": "dev-master",
     "kartik-v/yii2-widget-switchinput": "dev-master",
     "zxbodya/yii2-gallery-manager": "*@dev",
-    "mihaildev/yii2-ckeditor": "*"
+    "mihaildev/yii2-ckeditor": "*",
+    "kartik-v/yii2-tree-manager": "dev-master",
+    "mihaildev/yii2-elfinder": "*",
+    "wokster/yii2-translation-manager": "v1.1@dev"
+
+
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",

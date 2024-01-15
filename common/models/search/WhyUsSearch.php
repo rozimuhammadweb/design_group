@@ -1,15 +1,15 @@
 <?php
 
-namespace common\models;
+namespace common\models\search;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Works;
+use common\models\WhyUs;
 
 /**
- * WorksSearch represents the model behind the search form of `common\models\Works`.
+ * WhyUsSearch represents the model behind the search form of `common\models\WhyUs`.
  */
-class WorksSearch extends Works
+class WhyUsSearch extends WhyUs
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class WorksSearch extends Works
     public function rules()
     {
         return [
-            [['id', 'status', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
-            [['image', 'title'], 'safe'],
+            [['id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['image', 'title', 'short_description'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class WorksSearch extends Works
      */
     public function search($params)
     {
-        $query = Works::find()->joinWith('translation');
+        $query = WhyUs::find()->joinWith('translation');
 
         // add conditions that should always apply here
 
@@ -61,13 +61,14 @@ class WorksSearch extends Works
             'id' => $this->id,
             'status' => $this->status,
             'created_by' => $this->created_by,
-            'created_at' => $this->created_at,
             'updated_by' => $this->updated_by,
+            'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'image', $this->image])
-            ->andFilterWhere(['like', 'title', $this->title]);
+            ->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'short_description', $this->short_description]);
 
         return $dataProvider;
     }

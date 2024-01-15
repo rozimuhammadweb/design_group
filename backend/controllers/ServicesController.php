@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use common\models\Services;
-use common\models\ServicesSearch;
+use common\models\search\ServicesSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

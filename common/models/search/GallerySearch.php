@@ -4,12 +4,12 @@ namespace common\models\search;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Rent;
+use common\models\Gallery;
 
 /**
- * RentSearch represents the model behind the search form of `common\models\Rent`.
+ * GallerySearch represents the model behind the search form of `common\models\Gallery`.
  */
-class RentSearch extends Rent
+class GallerySearch extends Gallery
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,7 @@ class RentSearch extends Rent
     public function rules()
     {
         return [
-            [['id', 'cost', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
-            [['is_popular', 'updated_by', 'updated_at', 'title', 'short_description', 'type'], 'safe'],
-
+            [['id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
         ];
     }
 
@@ -41,7 +39,7 @@ class RentSearch extends Rent
      */
     public function search($params)
     {
-        $query = Rent::find()->joinWith('translation');
+        $query = Gallery::find();
 
         // add conditions that should always apply here
 
@@ -60,16 +58,12 @@ class RentSearch extends Rent
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'cost' => $this->cost,
             'status' => $this->status,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-        ])->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'short_description', $this->short_description])
-            ->andFilterWhere(['like', 'type', $this->type])
-            ->andFilterWhere(['like', 'is_popular', $this->is_popular]);
+        ]);
 
         return $dataProvider;
     }

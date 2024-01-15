@@ -2,62 +2,43 @@
 
 namespace backend\controllers;
 
-use common\models\WhyUs;
-use common\models\search\WhyUsSearch;
-use yii\filters\AccessControl;
+use common\models\RentItem;
+use common\models\search\RentItemSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
-use zxbodya\yii2\galleryManager\GalleryManagerAction;
 
 /**
- * WhyUsController implements the CRUD actions for WhyUs model.
+ * RentItemController implements the CRUD actions for RentItem model.
  */
-class WhyUsController extends Controller
+class RentItemController extends Controller
 {
     /**
      * @inheritDoc
      */
     public function behaviors()
     {
-        return [
-            'access' => [
-                'class' => AccessControl::class,
-                'only' => ['index', 'view', 'create', 'update', 'delete', 'images'],
-                'rules' => [
-                    [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete','images'],
-                        'allow' => true,
-                        'roles' => ['@'],
+        return array_merge(
+            parent::behaviors(),
+            [
+                'verbs' => [
+                    'class' => VerbFilter::className(),
+                    'actions' => [
+                        'delete' => ['POST'],
                     ],
                 ],
-            ],
-        ];
-    }
-
-
-    public function actions()
-    {
-        return [
-            'galleryApi' => [
-                'class' => GalleryManagerAction::className(),
-                // mappings between type names and model classes (should be the same as in behaviour)
-                'types' => [
-                    'why-us' => WhyUs::class
-                ]
-            ],
-        ];
+            ]
+        );
     }
 
     /**
-     * Lists all WhyUs models.
+     * Lists all RentItem models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new WhyUsSearch();
+        $searchModel = new RentItemSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -67,7 +48,7 @@ class WhyUsController extends Controller
     }
 
     /**
-     * Displays a single WhyUs model.
+     * Displays a single RentItem model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -80,18 +61,16 @@ class WhyUsController extends Controller
     }
 
     /**
-     * Creates a new WhyUs model.
+     * Creates a new RentItem model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new WhyUs();
+        $model = new RentItem();
 
         if ($this->request->isPost) {
-            $model->image = UploadedFile::getInstance($model, 'imageFile');
             if ($model->load($this->request->post()) && $model->save()) {
-                $model->setScenario('insert');
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -104,7 +83,7 @@ class WhyUsController extends Controller
     }
 
     /**
-     * Updates an existing WhyUs model.
+     * Updates an existing RentItem model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -113,10 +92,8 @@ class WhyUsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $model->image = UploadedFile::getInstance($model, 'imageFile');
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            $model->setScenario('update');
 
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -126,7 +103,7 @@ class WhyUsController extends Controller
     }
 
     /**
-     * Deletes an existing WhyUs model.
+     * Deletes an existing RentItem model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -140,33 +117,18 @@ class WhyUsController extends Controller
     }
 
     /**
-     * Finds the WhyUs model based on its primary key value.
+     * Finds the RentItem model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return WhyUs the loaded model
+     * @return RentItem the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = WhyUs::findOne(['id' => $id])) !== null) {
+        if (($model = RentItem::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    /**
-     * @param $id
-     * @return string
-     * @throws NotFoundHttpException
-     */
-    public function actionImages($id)
-    {
-
-        $model = $this->findModel($id);
-
-        return $this->render('images', [
-            'model' => $model
-        ]);
     }
 }

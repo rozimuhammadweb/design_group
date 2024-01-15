@@ -5,16 +5,33 @@ return [
         '@npm'   => '@vendor/npm-asset',
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+    'modules' => [
+        'treemanager' =>  [
+            'class' => '\kartik\tree\Module',
+            // other module settings, refer detailed documentation
+        ],
+        'menumanager' => [
+            'class' => 'backend\modules\menumanager\Module'
+        ],
+    ],
     'components' => [
         'cache' => [
             'class' => \yii\caching\FileCache::class,
         ],
         'i18n' => [
             'translations' => [
-                'app' => [
+                'site*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@soft/i18n/messages',
+                    'fileMap' => [
+                        'site' => 'site.php',
+                    ],
+                ],
+
+                'app*' => [
                     'class' => 'yii\i18n\DbMessageSource',
-                    'forceTranslation' => true,
-                ]
+                ],
+
             ],
         ],
     ],

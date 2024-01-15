@@ -1,15 +1,15 @@
 <?php
 
-namespace common\models;
+namespace common\models\search;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Gallery;
+use common\models\Works;
 
 /**
- * GallerySearch represents the model behind the search form of `common\models\Gallery`.
+ * WorksSearch represents the model behind the search form of `common\models\Works`.
  */
-class GallerySearch extends Gallery
+class WorksSearch extends Works
 {
     /**
      * {@inheritdoc}
@@ -17,7 +17,8 @@ class GallerySearch extends Gallery
     public function rules()
     {
         return [
-            [['id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'status', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
+            [['image', 'title'], 'safe'],
         ];
     }
 
@@ -39,7 +40,7 @@ class GallerySearch extends Gallery
      */
     public function search($params)
     {
-        $query = Gallery::find();
+        $query = Works::find()->joinWith('translation');
 
         // add conditions that should always apply here
 
@@ -60,10 +61,13 @@ class GallerySearch extends Gallery
             'id' => $this->id,
             'status' => $this->status,
             'created_by' => $this->created_by,
-            'updated_by' => $this->updated_by,
             'created_at' => $this->created_at,
+            'updated_by' => $this->updated_by,
             'updated_at' => $this->updated_at,
         ]);
+
+        $query->andFilterWhere(['like', 'image', $this->image])
+            ->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;
     }

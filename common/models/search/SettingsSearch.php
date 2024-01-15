@@ -1,15 +1,15 @@
 <?php
 
-namespace common\models;
+namespace common\models\search;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\WhyUs;
+use common\models\Settings;
 
 /**
- * WhyUsSearch represents the model behind the search form of `common\models\WhyUs`.
+ * SettingsSearch represents the model behind the search form of `common\models\Settings`.
  */
-class WhyUsSearch extends WhyUs
+class SettingsSearch extends Settings
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class WhyUsSearch extends WhyUs
     public function rules()
     {
         return [
-            [['id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
-            [['image', 'title', 'short_description'], 'safe'],
+            [['id', 'status'], 'integer'],
+            [['number', 'email', 'logo', 'company_info', 'address', 'working_time'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class WhyUsSearch extends WhyUs
      */
     public function search($params)
     {
-        $query = WhyUs::find()->joinWith('translation');
+        $query = Settings::find()->joinWith('translation');
 
         // add conditions that should always apply here
 
@@ -60,15 +60,14 @@ class WhyUsSearch extends WhyUs
         $query->andFilterWhere([
             'id' => $this->id,
             'status' => $this->status,
-            'created_by' => $this->created_by,
-            'updated_by' => $this->updated_by,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'image', $this->image])
-            ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'short_description', $this->short_description]);
+        $query->andFilterWhere(['like', 'number', $this->number])
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'company_info', $this->company_info])
+            ->andFilterWhere(['like', 'address', $this->address])
+            ->andFilterWhere(['like', 'working_time', $this->working_time])
+            ->andFilterWhere(['like', 'logo', $this->logo]);
 
         return $dataProvider;
     }
