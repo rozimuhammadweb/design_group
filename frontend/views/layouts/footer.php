@@ -1,16 +1,41 @@
 <!-- //footer -->
 <?php
 
-use common\models\Settings;
+use backend\modules\menumanager\models\Menu;
 
-//$setting = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->orderBy('id DESC')->one();
+$mainMenus = Menu::getMenu('main_menu');
+$menus = $mainMenus->activeSubMenus;
 
 ?>
-<?php //= $this->render('footer', ['setting' => $setting]) ?>
-
+<div class="footer-top ab">
+    <div class="my-container">
+        <div class="navigation-in">
+            <div class="left">
+                <a href="index.html" class="logo">
+                    <img src="/img/png/logo.png" alt="" class="logo-in">
+                </a>
+                <ul class="menu-bar">
+                    <li>
+                        <?php foreach ($menus as $menu): ?>
+                            <a href="<?= $menu->url ?>" class="txt-18 "><?= Yii::t('app', $menu->title) ?></a>
+                        <?php endforeach; ?>
+                    </li>
+                </ul>
+            </div>
+            <div class="right">
+                <button class="btn-glavni konsul back-btn">
+                    Консультация
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="footer ">
     <div class="my-container">
         <div class="footer-in">
+            <?php foreach ($setting
+
+            as $s): ?>
             <div class="top">
                 <p class="txt-16 left-txt">
                     © 2024 Ali Design
@@ -35,10 +60,9 @@ use common\models\Settings;
 
             </div>
             <p class="bottom txt-12">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book
+                <?=Yii::t('app', $s->company_info) ?>
             </p>
         </div>
+        <?php endforeach; ?>
     </div>
 </div>

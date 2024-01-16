@@ -2,8 +2,11 @@
 
 namespace frontend\controllers;
 
+use app\models\InboxData;
 use common\models\About;
 use common\models\LoginForm;
+use common\models\Services;
+use common\models\UserData;
 use frontend\models\ContactForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResendVerificationEmailForm;
@@ -145,13 +148,16 @@ class SiteController extends Controller
     public function actionAbout()
     {
         $about = About::find()->andWhere(['status' => About::STATUS_ACTIVE])->orderBy('id DESC')->all();
-        return $this->render('about', ['about' => $about]);
+        $services = Services::find()->andWhere(['status' => Services::STATUS_ACTIVE])->all();
+        return $this->render('about', ['about' => $about, 'services' => $services]);
     }
 
     public function actionServices()
     {
         return $this->render('services');
-    }public function actionWorks()
+    }
+
+    public function actionWorks()
     {
         return $this->render('works');
     }
@@ -159,6 +165,24 @@ class SiteController extends Controller
     public function actionGallery()
     {
         return $this->render('gallery');
+    }
+
+    public function actionConsultation()
+    {
+        $model = new InboxData();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'Мы свяжемся с вами в ближайшее врем!');
+                return $this->redirect(['/']);
+            } else {
+                Yii::$app->session->setFlash('error', 'Ошибка при заполнении формы.');
+            }
+        } else {
+            Yii::$app->session->setFlash('error', 'Ошибка при заполнении формы.');
+        }
+
+        return $this->redirect(['/']);
     }
 
     /**

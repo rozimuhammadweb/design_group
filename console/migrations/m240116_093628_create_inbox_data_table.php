@@ -14,6 +14,10 @@ class m240116_093628_create_inbox_data_table extends Migration
     {
         $this->createTable('{{%inbox_data}}', [
             'id' => $this->primaryKey(),
+            'name' => $this->string(),
+            'number' => $this->string(),
+            'comment' => $this->text()->defaultValue(null),
+            'created_at' => $this->integer()
         ]);
     }
 

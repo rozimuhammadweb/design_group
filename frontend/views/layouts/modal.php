@@ -24,11 +24,12 @@
 <!-- //siz-royhatdan otdingiz -->
 <?php
 
-use common\models\UserData;
+
+use app\models\InboxData;
 use yii\widgets\ActiveForm;
 
 
-$model = new UserData();
+$model = new InboxData();
 ?>
 <div class="modal-first modal-web">
     <div class="back exit">

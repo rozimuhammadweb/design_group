@@ -1,6 +1,9 @@
 <?php
 
+use app\models\InboxData;
 use common\models\Settings;
+use common\models\UserData;
+use yii\widgets\ActiveForm;
 
 $settings = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->all();
 
@@ -88,22 +91,24 @@ $settings = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->a
                     </div>
                 </div>
                 <div class="bottom-c ab">
-                    <iframe class="left"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97258.01795972162!2d71.72042098250571!3d40.37975367272492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb83431937abc5%3A0xcfa4d876b34e7bbc!2z0KTQtdGA0LPQsNC90LAsINCj0LfQsdC10LrQuNGB0YLQsNC9!5e0!3m2!1sru!2s!4v1661864721639!5m2!1sru!2s"
-                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <div class="right">
-                        <h1 class="txt-38 top">Вопросы или предложения</h1>
-                        <form class="form-content">
+                    <?php
+
+                    $model = new InboxData();
+                    ?>
+                    <div class="bottom-c ab">
+                        <!--                    <iframe class="left" src="/https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97258.01795972162!2d71.72042098250571!3d40.37975367272492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb83431937abc5%3A0xcfa4d876b34e7bbc!2z0KTQtdGA0LPQsNC90LAsINCj0LfQsdC10LrQuNGB0YLQsNC9!5e0!3m2!1sru!2s!4v1661864721639!5m2!1sru!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>-->
+                        <div class="right">
+                            <h1 class="txt-38 top">Вопросы или предложения</h1>
+                            <?php $form = ActiveForm::begin(['action' => ['consultation']]); ?>
                             <label for="i1" class="txt-16 label">Имя</label>
-                            <input type="text" placeholder="Ваше имя" class="input txt-16">
+                            <?= $form->field($model, 'name', ['template' => "{input}\n{hint}\n{error}"])->textInput(['class' => 'input txt-16'])->label(false) ?>
                             <label for="i2" class="txt-16 label">Номер телефона</label>
-                            <input type="number" placeholder="+998" class="input txt-16">
+                            <?= $form->field($model, 'number')->textInput(['class' => 'input txt-16'])->label(false) ?>
                             <label for="i4" class="txt-16 label">Вопросы или предложения</label>
-                            <textarea name="i4" id="i4" placeholder="Пишите..." class="input txt-16" cols="30"
-                                      rows="7"></textarea>
+                            <?= $form->field($model, 'comment')->textarea(['class' => 'input txt-16', 'rows' => 7, 'placeholder' => 'Пишите...'])->label(false) ?>
                             <button type="submit" class="btn-glavni txt-18 sucs">Отправить</button>
-                        </form>
+                            <?php ActiveForm::end() ?>
+                        </div>
                     </div>
                 </div>
             </div>

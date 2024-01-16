@@ -12,7 +12,7 @@ use yii\helpers\Html;
 
 AppAsset::register($this);
 
-$setting = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->orderBy('id DESC')->one();
+$setting = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->orderBy('id DESC')->all();
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>

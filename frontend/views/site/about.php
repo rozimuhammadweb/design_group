@@ -47,62 +47,37 @@
                     <h1 class="txt-23">
                         Наши услуги
                     </h1>
-                    <a href="#" class="card-s">
-                        <div class="left">
-                            <img src="/img/png/s1.png" alt="">
-                        </div>
-                        <h1 class="txt-18">
-                            Наружная реклама в городе
-                        </h1>
-                    </a>
-                    <a href="#" class="card-s">
-                        <div class="left">
-                            <img src="/img/png/s2.png" alt="">
-                        </div>
-                        <h1 class="txt-18">
-                            Наружная реклама в городе
-                        </h1>
-                    </a>
-                    <a href="#" class="card-s">
-                        <div class="left">
-                            <img src="/img/png/s3.png" alt="">
-                        </div>
-                        <h1 class="txt-18">
-                            Наружная реклама в городе
-                        </h1>
-                    </a>
-                    <a href="#" class="card-s">
-                        <div class="left">
-                            <img src="/img/png/s5.png" alt="">
-                        </div>
-                        <h1 class="txt-18">
-                            Наружная реклама в городе
-                        </h1>
-                    </a>
-                    <a href="#" class="card-s">
-                        <div class="left">
-                            <img src="/img/png/s6.png" alt="">
-                        </div>
-                        <h1 class="txt-18">
-                            Наружная реклама в городе
-                        </h1>
-                    </a>
-                    <a href="#" class="card-s">
-                        <div class="left">
-                            <img src="/img/png/s4.png" alt="">
-                        </div>
-                        <h1 class="txt-18">
-                            Наружная реклама в городе
-                        </h1>
-                    </a>
-                    <a href="#" class="card-s">
-                        <div class="left">
-                            <img src="/img/png/s7.png" alt="">
-                        </div>
-                        <h1 class="txt-18">
-                            Наружная реклама в городе
-                        </h1>
-                    </a>
+                    <?php foreach ($services as $service): ?>
+                        <a href="#" class="card-s">
+                            <div class="left">
+                                <img src="/img/png/s1.png" alt="">
+                            </div>
+                            <h1 class="txt-18">
+                                <?= $service->title ?>
+                            </h1>
+                        </a> <a href="#" class="card-s">
+                            <div class="left">
+                                <img src="/img/png/s1.png" alt="">
+                            </div>
+                            <h1 class="txt-18">
+                                <?= $service->title ?>
+                            </h1>
+                        </a> <a href="#" class="card-s">
+                            <div class="left">
+                                <img src="/img/png/s1.png" alt="">
+                            </div>
+                            <h1 class="txt-18">
+                                <?= $service->title ?>
+                            </h1>
+                        </a> <a href="#" class="card-s">
+                            <div class="left">
+                                <img src="/img/png/s1.png" alt="">
+                            </div>
+                            <h1 class="txt-18">
+                                <?= $service->title ?>
+                            </h1>
+                        </a>
+                    <?php endforeach; ?>
                 </div>
                 <div class="cards-blog bottom-blog ab">
                     <h1 class="txt-23">
