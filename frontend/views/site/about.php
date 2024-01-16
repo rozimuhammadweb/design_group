@@ -3,40 +3,45 @@
 <div class="main-page-content about-padding">
     <div class="my-container">
         <div class="main-content-in">
-            <div class="sec-content ab">
-                <h1 class="txt-60">
-                    Рекламное агентство полного цикла в Фергане
-                </h1>
-                <p class="txt-20">
-                    Реклама — это не просто, но мы всегда помогаем решить реальные задачи наших клиентов в реальном времени! Вам достаточно оставить заявку, наши маркетологи предложат Вам решения ваших проблем в сфере рекламы
-                </p>
-                <img src="/img/png/ab1.png" alt="" class="sec-img">
-                <p class="txt-20">
-                    Мы - продвинутые специалисты в рекламной сфере, которые знают, чего хочет Ваш клиент и как он это хочет видеть. Наше подразделение рекламного производства готово предложить свои услуги по широкоформатной и интерьерной печати, а так же рекламное производство. Наличие собственной производственной базы дает нам возможность качественно выполнять заказы в определённые сроки. В зоне наших интересов — постоянное и долгосрочное развитие отношений с клиентами, партнерами, подрядчиками и специалистами. Мы сэкономим ваше время и деньги.
-                </p>
-                <img src="/img/png/ab2.png" alt="" class="sec-img">
-                <div class="bottom-crs">
-                    <div class="counter-card">
-                        <p class="txt-40"><span class="counter" data-count="500">0</span>+</p>
-                        <p class="txt-16">
-                            Успешные проекты
-                        </p>
-                    </div>
-                    <div class="counter-card">
-                        <p class="txt-40"><span class="counter" data-count="110">0</span>+</p>
-                        <p class="txt-16">
-                            Постоянных клиентов
-                        </p>
-                    </div>
-                    <div class="counter-card">
-                        <p class="txt-40"><span class="counter" data-count="12">0</span>+</p>
-                        <p class="txt-16">
-                            Качественные услуги
-                        </p>
-                    </div>
+            <?php foreach ($about as $a): ?>
+                <div class="sec-content ab">
+                    <h1 class="txt-60">
+                        <?= $a->title ?>
+                    </h1>
+                    <p class="txt-20">
+                        <?= $a->short_description ?>
+                    </p>
+                    <img src="/img/png/ab1.png" alt="" class="sec-img">
+                    <p class="txt-20">
+                        <?= $a->description ?>
+                    </p>
+                    <img src="/img/png/ab2.png" alt="" class="sec-img">
+                    <div class="bottom-crs">
+                        <div class="counter-card">
+                            <p class="txt-40"><span class="counter" data-count="<?= $a->successful_project ?>">0</span>+
+                            </p>
+                            <p class="txt-16">
+                                <? Yii::t('app', ' Успешные проекты') ?>
+                            </p>
+                        </div>
+                        <div class="counter-card">
+                            <p class="txt-40"><span class="counter" data-count="<?= $a->regular_customer ?>">0</span>+
+                            </p>
+                            <p class="txt-16">
+                                Постоянных клиентов
+                            </p>
+                        </div>
+                        <div class="counter-card">
+                            <p class="txt-40"><span class="counter" data-count="<?= $a->quality_service ?>">0</span>+
+                            </p>
+                            <p class="txt-16">
+                                Качественные услуги
+                            </p>
+                        </div>
 
+                    </div>
                 </div>
-            </div>
+            <?php endforeach ?>
             <div class="sidebar-content">
                 <div class="cards-blog ab">
                     <h1 class="txt-23">

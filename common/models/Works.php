@@ -6,7 +6,6 @@ use gofuroov\multilingual\behaviors\MultilingualBehavior;
 use gofuroov\multilingual\db\MultilingualLabelsTrait;
 use gofuroov\multilingual\db\MultilingualQuery;
 use mohorev\file\UploadImageBehavior;
-use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
@@ -25,10 +24,25 @@ use yii\behaviors\TimestampBehavior;
  */
 class Works extends \yii\db\ActiveRecord
 {
-
+    public const STATUS_ACTIVE = 1;
+    public const STATUS_INACTIVE = 0;
     public $imageFile;
 
     use MultilingualLabelsTrait;
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'works';
+    }
+
+    public static function find()
+    {
+        $query = new MultilingualQuery(get_called_class());
+        return $query->multilingual();
+    }
 
     public function behaviors()
     {
@@ -59,15 +73,6 @@ class Works extends \yii\db\ActiveRecord
         ];
     }
 
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
-    {
-        return 'works';
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -96,12 +101,6 @@ class Works extends \yii\db\ActiveRecord
             'created_at' => 'Yaratilgan',
             'updated_at' => 'Yangilangan',
         ];
-    }
-
-    public static function find()
-    {
-        $query = new MultilingualQuery(get_called_class());
-        return $query->multilingual();
     }
 
     public function getCreatedByUser()

@@ -31,6 +31,8 @@ use zxbodya\yii2\galleryManager\GalleryBehavior;
  */
 class About extends ActiveRecord
 {
+    public const STATUS_ACTIVE = 1;
+    public const STATUS_INACTIVE = 0;
 
     use MultilingualLabelsTrait;
 

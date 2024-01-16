@@ -26,6 +26,7 @@ $setting = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->or
     </head>
     <body class="d-flex flex-column h-100">
     <?php $this->beginBody() ?>
+    <?= $this->render('modal') ?>
     <?= $this->render('header', ['setting' => $setting]) ?>
     <main role="main" class="flex-shrink-0">
         <?= Alert::widget() ?>

@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\About;
 use common\models\LoginForm;
 use frontend\models\ContactForm;
 use frontend\models\PasswordResetRequestForm;
@@ -143,7 +144,16 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        return $this->render('about');
+        $about = About::find()->andWhere(['status' => About::STATUS_ACTIVE])->orderBy('id DESC')->all();
+        return $this->render('about', ['about' => $about]);
+    }
+
+    public function actionServices()
+    {
+        return $this->render('services');
+    }public function actionWorks()
+    {
+        return $this->render('works');
     }
 
     public function actionGallery()
@@ -265,7 +275,7 @@ class SiteController extends Controller
     public function actionChangelang($lang)
     {
         Yii::$app->language = $lang;
-        Yii::$app->session['lang'] = $lang;
+        Yii::$app->Session['lang'] = $lang;
 
         $referrer = Yii::$app->request->referrer;
         return $this->redirect($referrer ?: Yii::$app->homeUrl);

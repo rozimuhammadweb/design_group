@@ -25,7 +25,23 @@ use yii\db\ActiveRecord;
  */
 class Rent extends ActiveRecord
 {
+    public const STATUS_ACTIVE = 1;
+    public const STATUS_INACTIVE = 0;
     use MultilingualLabelsTrait;
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'rent';
+    }
+
+    public static function find()
+    {
+        $query = new MultilingualQuery(get_called_class());
+        return $query->multilingual();
+    }
 
     public function behaviors()
     {
@@ -45,15 +61,6 @@ class Rent extends ActiveRecord
 
             ],
         ];
-    }
-
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
-    {
-        return 'rent';
     }
 
     /**
@@ -101,12 +108,6 @@ class Rent extends ActiveRecord
     public function getRentLangs()
     {
         return $this->hasMany(RentLang::class, ['owner_id' => 'id']);
-    }
-
-    public static function find()
-    {
-        $query = new MultilingualQuery(get_called_class());
-        return $query->multilingual();
     }
 
     public function getCreatedByUser()

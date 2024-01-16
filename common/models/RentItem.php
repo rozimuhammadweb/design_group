@@ -4,9 +4,6 @@ namespace common\models;
 
 use gofuroov\multilingual\behaviors\MultilingualBehavior;
 use gofuroov\multilingual\db\MultilingualLabelsTrait;
-use Yii;
-use yii\behaviors\BlameableBehavior;
-use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "rent_item".
@@ -20,8 +17,15 @@ use yii\behaviors\TimestampBehavior;
  */
 class RentItem extends \yii\db\ActiveRecord
 {
-
     use MultilingualLabelsTrait;
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'rent_item';
+    }
 
     public function behaviors()
     {
@@ -37,14 +41,6 @@ class RentItem extends \yii\db\ActiveRecord
 
             ],
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
-    {
-        return 'rent_item';
     }
 
     /**

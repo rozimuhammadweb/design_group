@@ -30,7 +30,8 @@ use zxbodya\yii2\galleryManager\GalleryBehavior;
  */
 class WhyUs extends \yii\db\ActiveRecord
 {
-
+    public const STATUS_ACTIVE = 1;
+    public const STATUS_INACTIVE = 0;
     public $imageFile;
     use MultilingualLabelsTrait;
 
@@ -40,6 +41,12 @@ class WhyUs extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'why_us';
+    }
+
+    public static function find()
+    {
+        $query = new MultilingualQuery(get_called_class());
+        return $query->multilingual();
     }
 
     public function behaviors()
@@ -128,6 +135,10 @@ class WhyUs extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getGalleryImagesAsArray()
+    {
+        return $this->getGalleryImages()->asArray();
+    }
 
     /**
      * @return ActiveQuery
@@ -137,28 +148,6 @@ class WhyUs extends \yii\db\ActiveRecord
         return $this->hasMany(GalleryImage::class, ['ownerId' => 'id'])
             ->andWhere(['type' => 'why-us'])
             ->orderBy('rank ASC');
-    }
-
-
-    public function getGalleryImagesAsArray()
-    {
-        return $this->getGalleryImages()->asArray();
-    }
-
-
-    /**
-     * @param string $type
-     * @return array
-     */
-    public function getImages($type = 'preview')
-    {
-        $images = $this->galleryImagesAsArray;
-        $result = [];
-        foreach ($images as $image) {
-            $result[] = "/images/why-us/gallery/$this->id/" . $image['id'] . "/$type.jpg";
-        }
-        return $result;
-
     }
 
     /**
@@ -174,11 +163,19 @@ class WhyUs extends \yii\db\ActiveRecord
         return $images[0] ?? '';
     }
 
-
-    public static function find()
+    /**
+     * @param string $type
+     * @return array
+     */
+    public function getImages($type = 'preview')
     {
-        $query = new MultilingualQuery(get_called_class());
-        return $query->multilingual();
+        $images = $this->galleryImagesAsArray;
+        $result = [];
+        foreach ($images as $image) {
+            $result[] = "/images/why-us/gallery/$this->id/" . $image['id'] . "/$type.jpg";
+        }
+        return $result;
+
     }
 
     public function getCreatedByUser()
