@@ -115,4 +115,9 @@ class Works extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'updated_by']);
     }
+
+    public static function getWorks()
+    {
+      return self::find()->andWhere(['status' => Works::STATUS_ACTIVE])->all();
+    }
 }

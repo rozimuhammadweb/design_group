@@ -7,6 +7,7 @@ use common\models\About;
 use common\models\LoginForm;
 use common\models\Services;
 use common\models\UserData;
+use common\models\Works;
 use frontend\models\ContactForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResendVerificationEmailForm;
@@ -15,19 +16,17 @@ use frontend\models\SignupForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
+use yii\captcha\CaptchaAction;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
+use yii\web\ErrorAction;
 
-/**
- * Site controller
- */
+
 class SiteController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
+
     public function behaviors()
     {
         return [
@@ -63,23 +62,13 @@ class SiteController extends Controller
     {
         return [
             'error' => [
-                'class' => \yii\web\ErrorAction::class,
+                'class' => ErrorAction::class,
             ],
             'captcha' => [
-                'class' => \yii\captcha\CaptchaAction::class,
+                'class' => CaptchaAction::class,
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
-    }
-
-    /**
-     * Displays homepage.
-     *
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        return $this->render('index');
     }
 
     /**
@@ -154,8 +143,8 @@ class SiteController extends Controller
 
     public function actionServices()
     {
-        $services = Services::find()->andWhere(['status' => Services::STATUS_ACTIVE])->all();
-        return $this->render('services', ['services' => $services]);
+        $service = Services::find()->andWhere(['status' => Services::STATUS_ACTIVE])->one();
+        return $this->render('services', ['service' => $service]);
     }
 
     public function actionWorks()
@@ -166,6 +155,18 @@ class SiteController extends Controller
     public function actionGallery()
     {
         return $this->render('gallery');
+    }
+
+    public function actionServiceView()
+    {
+        $services = Services::getServices();
+        return $this->render('services-view', ['services' => $services]);
+    }
+
+    public function actionMoreInfo()
+    {
+        $work = Works::find()->andWhere(['status' => Works::STATUS_ACTIVE])->one();
+        return $this->render('more-info', ['work' => $work]);
     }
 
     public function actionConsultation()
@@ -196,12 +197,22 @@ class SiteController extends Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
             Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
-            return $this->goHome();
+            return $this->actionIndex();
         }
 
         return $this->render('signup', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * Displays homepage.
+     *
+     * @return mixed
+     */
+    public function actionIndex()
+    {
+        return $this->render('index');
     }
 
     /**
@@ -218,10 +229,8 @@ class SiteController extends Controller
 
                 return $this->goHome();
             }
-
             Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
         }
-
         return $this->render('requestPasswordResetToken', [
             'model' => $model,
         ]);
@@ -301,7 +310,6 @@ class SiteController extends Controller
     {
         Yii::$app->language = $lang;
         Yii::$app->Session['lang'] = $lang;
-
         $referrer = Yii::$app->request->referrer;
         return $this->redirect($referrer ?: Yii::$app->homeUrl);
     }

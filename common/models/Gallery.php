@@ -152,4 +152,5 @@ class Gallery extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'updated_by']);
     }
+
 }

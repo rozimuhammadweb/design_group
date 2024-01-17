@@ -27,9 +27,9 @@ class Module extends \yii\base\Module
     public function sections()
     {
         return [
-            'site/services' => 'Biz xizmatlar',
+            'site/service-view' => 'Xizmatlar',
             'site/about' => 'Biz haqimizda',
-            'site/works' => "Bizning ishlar",
+            'site/works' => "Ishlar",
             'site/gallery' => "Galleriya",
             'site/contact' => "Bog'lanish",
 

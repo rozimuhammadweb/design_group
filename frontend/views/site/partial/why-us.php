@@ -1,7 +1,5 @@
 <?php
-
 use common\models\WhyUs;
-
 $why_us = WhyUs::find()->andWhere(['status' => WhyUs::STATUS_ACTIVE])->all();
 ?>
 

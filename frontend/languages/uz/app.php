@@ -4,10 +4,11 @@ return [
     'all-services' => 'Barcha xizmatlar',
     'design' => 'Dizayn rivojlanishi va korporativ identifikatsiya',
     'send' => 'Yuborish',
-    'consultation' => 'Mashvarat',
+    'consultation' => 'Maslahat',
     'details' => 'Batafsil',
     'close' => 'Yopish',
     //modals
+    'order' => 'Buyurtma berish',
     'send_success' => 'Muvaffaqiyatli yuborildi!',
     'call' => 'Operatorlar tez orada siz bilan bog`lanadilar!',
     'finished' => 'Muvaffaqiyatli loyihalar',
@@ -31,5 +32,7 @@ return [
     'email' => 'Elektron pochta',
     'questions' => 'Savollar yoki takliflar',
     'name' => 'Ism',
+    'rent' => 'Аренда конструкции',
+    'rent-title' => 'Мы вам показали примерную сумму основных услуг. Ценовая категория всех услуг может быть индивидуальной от требований клиента',
 ];
 ?>

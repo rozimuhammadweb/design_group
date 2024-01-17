@@ -27,9 +27,8 @@
 
 
 use app\models\InboxData;
-use yii\widgets\ActiveForm;
+use yii\bootstrap4\ActiveForm;
 use yii\widgets\MaskedInput;
-
 
 $model = new InboxData();
 ?>

@@ -34,6 +34,11 @@ class Services extends \yii\db\ActiveRecord
         return 'services';
     }
 
+    public static function getServices()
+    {
+        return self::find()->andWhere(['status' => Services::STATUS_ACTIVE])->orderBy('id DESC')->all();
+    }
+
     public static function find()
     {
         $query = new MultilingualQuery(get_called_class());

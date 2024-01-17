@@ -120,4 +120,10 @@ class Rent extends ActiveRecord
         return $this->hasOne(User::class, ['id' => 'updated_by']);
     }
 
+    public static function getRent()
+    {
+        return self::find()->andWhere(['status' => Rent::STATUS_ACTIVE])->all();
+    }
+
+
 }

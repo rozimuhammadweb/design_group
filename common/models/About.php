@@ -99,7 +99,6 @@ class About extends ActiveRecord
                     'en' => "English",
                 ],
                 'attributes' => ['title', 'short_description', 'description',],
-
             ],
         ];
     }

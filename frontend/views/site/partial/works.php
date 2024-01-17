@@ -1,8 +1,9 @@
 <?php
 
 use common\models\Works;
+use yii\helpers\Url;
 
-$works = Works::find()->andWhere(['status' => Works::STATUS_ACTIVE])->all();
+$works = Works::getWorks();
 
 ?>
 <!-- //servise -->
@@ -11,12 +12,13 @@ $works = Works::find()->andWhere(['status' => Works::STATUS_ACTIVE])->all();
     <div class="my-container">
         <div class="servise-in">
             <div class="top">
-                <h1 class="txt-38"><?= Yii::t('app', 'works')?></h1>
-                <a href="batafsil.html" class="back-btn txt-18"><?= Yii::t('app','details')?></a>
+                <h1 class="txt-38"><?= Yii::t('app', 'works') ?></h1>
+                <a href="<?= Url::to(['site/service-view']) ?>"
+                   class="back-btn txt-18"><?= Yii::t('app', 'details') ?></a>
             </div>
             <div class="main-cards">
                 <?php foreach ($works as $work): ?>
-                    <a href="batafsil.html" class="cards-b">
+                    <a href="<?= Url::to(['site/more-info']) ?>" class="cards-b">
                         <div class="top">
                             <img src="<?= $work->getUploadUrl('image') ?>" alt="img">
                         </div>

@@ -8,6 +8,7 @@ return [
     'details' => 'More details',
     'close' => 'Close',
     //modals
+    'order' => 'Order Service',
     'send_success' => 'Successfully sent!',
     'call' => 'Operators will contact you soon!',
     'finished' => 'Successful projects',
@@ -31,6 +32,7 @@ return [
     'email' => 'Email account',
     'questions' => 'Questions or suggestions',
     'name' => 'Name',
+    'rent' => 'Structure Rental',
+    'rent-title' => 'We have shown you an approximate amount for basic services. The pricing category for all services can be individual based on client requirements.',
 ];
-
 ?>

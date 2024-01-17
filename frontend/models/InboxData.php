@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "inbox_data".
  *
@@ -29,6 +27,7 @@ class InboxData extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name', 'number'], 'required'],
             [['comment'], 'string'],
             [['created_at'], 'integer'],
             [['name', 'number'], 'string', 'max' => 255],
