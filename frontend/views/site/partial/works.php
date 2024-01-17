@@ -11,8 +11,8 @@ $works = Works::find()->andWhere(['status' => Works::STATUS_ACTIVE])->all();
     <div class="my-container">
         <div class="servise-in">
             <div class="top">
-                <h1 class="txt-38">Наши работы</h1>
-                <a href="batafsil.html" class="back-btn txt-18">Подробнее</a>
+                <h1 class="txt-38"><?= Yii::t('app', 'works')?></h1>
+                <a href="batafsil.html" class="back-btn txt-18"><?= Yii::t('app','details')?></a>
             </div>
             <div class="main-cards">
                 <?php foreach ($works as $work): ?>

@@ -1,15 +1,12 @@
 <!-- //navigation  -->
 <?php
 
-use backend\modules\menumanager\models\Menu;
-use common\models\Settings;
+
 use yii\bootstrap4\Nav;
 use yii\helpers\Url;
 
-$mainMenus = Menu::getMenu('main_menu');
-$menus = $mainMenus->activeSubMenus;
 
-$settings = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->all();
+
 ?>
 <div class="navigation">
     <div class="my-container">
@@ -27,14 +24,14 @@ $settings = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->a
                           d="M19.75 17.9404C19.75 17.5262 19.4142 17.1904 19 17.1904H5C4.58579 17.1904 4.25 17.5262 4.25 17.9404C4.25 18.3546 4.58579 18.6904 5 18.6904H19C19.4142 18.6904 19.75 18.3546 19.75 17.9404Z"
                           fill="black"/>
                 </svg>
-                <?php foreach ($settings as $setting): ?>
-                <a href="<? Url::home() ?>" class="logo">
+
+                <a href="<?= Url::to(['/']) ?>" class="logo">
                     <img src="<?= $setting->getUploadUrl('logo') ?>" alt="" class="logo-in">
                 </a>
                 <ul class="menu-bar">
                     <li>
                         <?php foreach ($menus as $menu): ?>
-                            <a href="<?= $menu->url ?>" class="txt-18 "><?= Yii::t('app', $menu->title) ?></a>
+                            <a href="<?= $menu->url ?>" class="txt-18 "><?= $menu->title ?></a>
                         <?php endforeach; ?>
                     </li>
                     <?php
@@ -74,13 +71,14 @@ $settings = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->a
                         </svg>
                     </div>
                     <div class="sec-num">
-                        <p class="txt-12">Номер телефона</p>
-                            <p class="txt-14">+998 <?= $setting->number ?></p>
-                        <?php endforeach; ?>
+                        <p class="txt-12"> <?= Yii::t('app', 'number') ?>
+                        </p>
+                        <p class="txt-14">+998 <?= $setting->number ?></p>
+
                     </div>
                 </div>
                 <button class="btn-glavni konsul back-btn">
-                    Консультация
+                    <?= Yii::t('app', 'consultation') ?>
                 </button>
             </div>
         </div>

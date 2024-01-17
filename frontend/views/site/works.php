@@ -5,7 +5,8 @@
         <div class="main-content-in">
             <div class="tabs-content">
                 <h1 class="txt-60">
-                    Наши работы
+                    <?= Yii::t('app', 'works') ?>
+
                 </h1>
                 <div class="tab-container ab">
                     <div id="icetab-container">

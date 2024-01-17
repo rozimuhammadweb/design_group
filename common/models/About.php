@@ -154,7 +154,6 @@ class About extends ActiveRecord
             $result[] = "/images/about/gallery/$this->id/" . $image['id'] . "/$type.jpg";
         }
         return $result;
-
     }
 
     /**
@@ -185,6 +184,11 @@ class About extends ActiveRecord
     public function getUpdatedByUser()
     {
         return $this->hasOne(User::class, ['id' => 'updated_by']);
+    }
+
+    public static function getAbout()
+    {
+        return  self::find()->andWhere(['status' => About::STATUS_ACTIVE])->orderBy('id DESC')->one();
     }
 
 }

@@ -14,7 +14,7 @@ $services = Services::find()->andWhere(['status' => Services::STATUS_ACTIVE])->o
         <div class="slider-page-in">
             <div class="top">
                 <h1 class="txt-38">
-                    Наши услуги
+                    <?= Yii::t('app', 'services')?>
                 </h1>
                 <!--                <div class="buttons">-->
                 <!--                    <button class="btn-slider btn-prew1">-->

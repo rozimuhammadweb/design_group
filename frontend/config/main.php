@@ -18,14 +18,13 @@ return [
             'baseUrl' => '/'
         ],
         'i18n' => [
-            'translations' => [
-                '*' => [
+            'translations' =>[
+                'app*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@frontend/languages',
-                    //'sourceLanguage' => 'en-US',
+                    'basePath' => '@app/languages',
                     'fileMap' => [
-                        'app' => 'app.php',
-                        'app/error' => 'error.php',
+                        'frontend/app'       => 'app.php',
+                        'frontend/app/error' => 'error.php',
                     ],
                 ],
             ],

@@ -119,4 +119,5 @@ class Rent extends ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'updated_by']);
     }
+
 }

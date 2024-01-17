@@ -147,14 +147,15 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        $about = About::find()->andWhere(['status' => About::STATUS_ACTIVE])->orderBy('id DESC')->all();
+        $about = About::find()->andWhere(['status' => About::STATUS_ACTIVE])->orderBy('id DESC')->one();
         $services = Services::find()->andWhere(['status' => Services::STATUS_ACTIVE])->all();
         return $this->render('about', ['about' => $about, 'services' => $services]);
     }
 
     public function actionServices()
     {
-        return $this->render('services');
+        $services = Services::find()->andWhere(['status' => Services::STATUS_ACTIVE])->all();
+        return $this->render('services', ['services' => $services]);
     }
 
     public function actionWorks()

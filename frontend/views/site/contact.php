@@ -17,10 +17,12 @@ $settings = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->a
                 <div class="top-c ab">
                     <div class="left">
                         <h1 class="txt-60">
-                            Связаться с нами
+                            <?= Yii::t('app', 'connect') ?>
+
                         </h1>
                         <p class="txt-20">
-                            Мы перезвоним Вам в течении 24 часов. Спасибо что связались с нами
+                            <?= Yii::t('app', 'connect-title') ?>
+
                         </p>
                         <div class="number">
                             <div class="left-num">
@@ -37,7 +39,8 @@ $settings = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->a
                             </div>
                             <?php foreach ($settings as $setting): ?>
                                 <div class="sec-num">
-                                    <p class="txt-12">Адрес</p>
+                                    <p class="txt-12">                            <?= Yii::t('app', 'address') ?>
+                                    </p>
                                     <p class="txt-14"><?= $setting->address ?></p>
                                 </div>
                             <?php endforeach; ?>
@@ -52,7 +55,7 @@ $settings = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->a
                                 </svg>
                             </div>
                             <div class="sec-num">
-                                <p class="txt-12">Номер телефона</p>
+                                <p class="txt-12"> <?= Yii::t('app', 'number') ?></p>
                                 <p class="txt-14">+998 <?= $setting->number ?></p>
                             </div>
                         </div>
@@ -66,7 +69,7 @@ $settings = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->a
                                 </svg>
                             </div>
                             <div class="sec-num">
-                                <p class="txt-12">Время работы</p>
+                                <p class="txt-12"> <?= Yii::t('app', 'working_time') ?></p>
                                 <p class="txt-14"><?= $setting->working_time ?></p>
                             </div>
                         </div>
@@ -80,7 +83,7 @@ $settings = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->a
                                 </svg>
                             </div>
                             <div class="sec-num">
-                                <p class="txt-12">Электронная почта</p>
+                                <p class="txt-12"> <?= Yii::t('app', 'email') ?></p>
                                 <p class="txt-14"><?= $setting->email ?></p>
                             </div>
                         </div>
@@ -92,21 +95,20 @@ $settings = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->a
                 </div>
                 <div class="bottom-c ab">
                     <?php
-
                     $model = new InboxData();
                     ?>
                     <div class="bottom-c ab">
                         <!--                    <iframe class="left" src="/https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97258.01795972162!2d71.72042098250571!3d40.37975367272492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb83431937abc5%3A0xcfa4d876b34e7bbc!2z0KTQtdGA0LPQsNC90LAsINCj0LfQsdC10LrQuNGB0YLQsNC9!5e0!3m2!1sru!2s!4v1661864721639!5m2!1sru!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>-->
                         <div class="right">
-                            <h1 class="txt-38 top">Вопросы или предложения</h1>
+                            <h1 class="txt-38 top"> <?= Yii::t('app', 'questions') ?></h1>
                             <?php $form = ActiveForm::begin(['action' => ['consultation']]); ?>
-                            <label for="i1" class="txt-16 label">Имя</label>
+                            <label for="i1" class="txt-16 label"> <?= Yii::t('app', 'name') ?></label>
                             <?= $form->field($model, 'name', ['template' => "{input}\n{hint}\n{error}"])->textInput(['class' => 'input txt-16'])->label(false) ?>
-                            <label for="i2" class="txt-16 label">Номер телефона</label>
+                            <label for="i2" class="txt-16 label"><?= Yii::t('app', 'number') ?></label>
                             <?= $form->field($model, 'number')->textInput(['class' => 'input txt-16'])->label(false) ?>
-                            <label for="i4" class="txt-16 label">Вопросы или предложения</label>
-                            <?= $form->field($model, 'comment')->textarea(['class' => 'input txt-16', 'rows' => 7, 'placeholder' => 'Пишите...'])->label(false) ?>
-                            <button type="submit" class="btn-glavni txt-18 sucs">Отправить</button>
+                            <label for="i4" class="txt-16 label"><?= Yii::t('app', 'questions') ?></label>
+                            <?= $form->field($model, 'comment')->textarea(['class' => 'input txt-16', 'rows' => 7, 'placeholder' => '...'])->label(false) ?>
+                            <button type="submit" class="btn-glavni txt-18 sucs"><?= Yii::t('app', 'send')?></button>
                             <?php ActiveForm::end() ?>
                         </div>
                     </div>

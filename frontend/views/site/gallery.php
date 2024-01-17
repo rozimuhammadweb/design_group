@@ -5,7 +5,8 @@
         <div class="main-content-in">
             <div class="gallery-in">
                 <h1 class="txt-60 top">
-                    Галерея
+                    <?= Yii::t('app', 'gallery') ?>
+
                 </h1>
                 <div class="section-gallerya ab">
                     <a href="/img/png/g3.png" data-fancybox="video-gallery" class="item clean">

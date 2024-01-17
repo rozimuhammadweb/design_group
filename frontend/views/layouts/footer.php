@@ -17,14 +17,14 @@ $menus = $mainMenus->activeSubMenus;
                 <ul class="menu-bar">
                     <li>
                         <?php foreach ($menus as $menu): ?>
-                            <a href="<?= $menu->url ?>" class="txt-18 "><?= Yii::t('app', $menu->title) ?></a>
+                            <a href="<?= $menu->url ?>" class="txt-18 "><?=  $menu->title ?></a>
                         <?php endforeach; ?>
                     </li>
                 </ul>
             </div>
             <div class="right">
                 <button class="btn-glavni konsul back-btn">
-                    Консультация
+                    <?= Yii::t('app', 'consultation') ?>
                 </button>
             </div>
         </div>
@@ -33,15 +33,13 @@ $menus = $mainMenus->activeSubMenus;
 <div class="footer ">
     <div class="my-container">
         <div class="footer-in">
-            <?php foreach ($setting
 
-            as $s): ?>
             <div class="top">
                 <p class="txt-16 left-txt">
                     © 2024 Ali Design
                 </p>
                 <p class="txt-16 main-txt">
-                    Разработал <a href="#">InSoft Solutions</a>
+                    <?= Yii::t('app', 'developed') ?> <a href="#">InSoft Solutions</a>
                 </p>
                 <div class="sign">
                     <a href="#" class="icon-bg">
@@ -60,9 +58,9 @@ $menus = $mainMenus->activeSubMenus;
 
             </div>
             <p class="bottom txt-12">
-                <?=Yii::t('app', $s->company_info) ?>
+                <?= $setting->company_info ?>
             </p>
         </div>
-        <?php endforeach; ?>
+
     </div>
 </div>

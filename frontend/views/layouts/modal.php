@@ -12,13 +12,14 @@
         </svg>
     </div>
     <h1 class="txt-38">
-        Успешно отправлено!
+        <?= Yii::t('app', 'send_success') ?>
     </h1>
     <div class="txt-18">
-        Операторы скоро свяжутся с вами!
+        <?= Yii::t('app', 'call') ?>
+
     </div>
 
-    <button class="back-btn back txt-16">Закрыть</button>
+    <button class="back-btn back txt-16"><?= Yii::t('app', 'close') ?></button>
 </div>
 
 <!-- //siz-royhatdan otdingiz -->
@@ -27,6 +28,7 @@
 
 use app\models\InboxData;
 use yii\widgets\ActiveForm;
+use yii\widgets\MaskedInput;
 
 
 $model = new InboxData();
@@ -43,15 +45,15 @@ $model = new InboxData();
     </div>
     <div class="right">
         <h1 class="txt-38">
-            Консультация
+            <?= Yii::t('app', 'consultation') ?>
         </h1>
 
         <?php $form = ActiveForm::begin(['action' => ['consultation']]); ?>
 
-        <?= $form->field($model, 'name')->textInput(['placeholder' => 'Ваше имя', 'class' => 'input txt-16'])->label(false) ?>
-        <?= $form->field($model, 'number')->textInput(['placeholder' => '+998', 'class' => 'input txt-16'])->label(false) ?>
+        <?= $form->field($model, 'name')->textInput(['class' => 'input txt-16'])->label(Yii::t('app', 'name')) ?>
+        <?= $form->field($model, 'number')->widget(MaskedInput::class, ['mask' => '99-999-99-99',])->label(Yii::t('app', 'number')) ?>
 
-        <button type="submit" class="btn-glavni txt-18 sucs">Отправить</button>
+        <button type="submit" class="btn-glavni txt-18 sucs"><?= Yii::t('app', 'send') ?></button>
 
         <?php ActiveForm::end(); ?>
     </div>

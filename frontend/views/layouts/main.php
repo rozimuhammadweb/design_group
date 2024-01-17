@@ -8,11 +8,14 @@ use common\models\Settings;
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
 use yii\helpers\Html;
-
+use backend\modules\menumanager\models\Menu;
 
 AppAsset::register($this);
 
-$setting = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->orderBy('id DESC')->all();
+$setting = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->orderBy('id DESC')->one();
+$mainMenus = Menu::getMenu('main_menu');
+$menus = $mainMenus->activeSubMenus;
+
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
@@ -27,12 +30,12 @@ $setting = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->or
     <body class="d-flex flex-column h-100">
     <?php $this->beginBody() ?>
     <?= $this->render('modal') ?>
-    <?= $this->render('header', ['setting' => $setting]) ?>
+    <?= $this->render('header', ['setting' => $setting,'menus'=>$menus]) ?>
     <main role="main" class="flex-shrink-0">
         <?= Alert::widget() ?>
         <?= $content ?>
     </main>
-    <?= $this->render('footer', ['setting' => $setting]) ?>
+    <?= $this->render('footer', ['setting' => $setting,'menus'=>$menus]) ?>
     <?php $this->endBody() ?>
     </body>
     </html>
