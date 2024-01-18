@@ -49,28 +49,7 @@
 
                     </h1>
                     <?php foreach ($services as $service): ?>
-                        <a href="#" class="card-s">
-                            <div class="left">
-                                <img src="/img/png/s1.png" alt="">
-                            </div>
-                            <h1 class="txt-18">
-                                <?= $service->title ?>
-                            </h1>
-                        </a> <a href="#" class="card-s">
-                            <div class="left">
-                                <img src="/img/png/s1.png" alt="">
-                            </div>
-                            <h1 class="txt-18">
-                                <?= $service->title ?>
-                            </h1>
-                        </a> <a href="#" class="card-s">
-                            <div class="left">
-                                <img src="/img/png/s1.png" alt="">
-                            </div>
-                            <h1 class="txt-18">
-                                <?= $service->title ?>
-                            </h1>
-                        </a> <a href="#" class="card-s">
+                        <a href="<?= \yii\helpers\Url::to(['site/services', 'id' => $service->id])?>" class="card-s">
                             <div class="left">
                                 <img src="/img/png/s1.png" alt="">
                             </div>
@@ -78,6 +57,7 @@
                                 <?= $service->title ?>
                             </h1>
                         </a>
+
                     <?php endforeach; ?>
                 </div>
                 <div class="cards-blog bottom-blog ab">

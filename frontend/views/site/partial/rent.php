@@ -1,14 +1,9 @@
 <?php
-
 use common\models\Rent;
-use common\models\RentItem;
-
 $rents = Rent::getRent();
-$rent_items = RentItem::find()->all();
-?>
-<!-- //arenda-count -->
 
-<div class="purches ab  ">
+?>
+<div class="purches ab">
     <div class="my-container">
         <div class="purches-in">
             <h1 class="txt-38">
@@ -16,7 +11,6 @@ $rent_items = RentItem::find()->all();
             </h1>
             <p class="txt-18 sec-p">
                 <?= Yii::t('app', 'rent-title') ?>
-
             </p>
             <div class="purches-main">
                 <?php foreach ($rents as $rent): ?>
@@ -33,7 +27,6 @@ $rent_items = RentItem::find()->all();
                         <a class="btn-glavni txt-18 konsul">
                             <?= Yii::t('app', 'order') ?>
                         </a>
-
                         <?php foreach ($rent->rentItems as $item): ?>
                             <p class="txt-16 bottom-p">
                                 <span></span>
@@ -43,8 +36,6 @@ $rent_items = RentItem::find()->all();
 
                     </div>
                 <?php endforeach; ?>
-
-
             </div>
         </div>
     </div>

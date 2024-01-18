@@ -1,9 +1,11 @@
 <?php
 
 use common\models\About;
+use common\models\Services;
 use yii\helpers\Url;
 
 $about = About::getAbout();
+$services = Services::getServices();
 ?>
 <!-- //about-page -->
 
@@ -23,7 +25,7 @@ $about = About::getAbout();
                 <p class="txt-20">
                     <?= $about->short_description ?>
                 </p>
-                <a href="<?= Url::to('site/about') ?>" class="btn-glavni txt-18">
+                <a href="<?= Url::to(['site/about']) ?>" class="btn-glavni txt-18">
                     <?= Yii::t('app', 'details') ?>
                 </a>
                 <div class="bottom-crs">

@@ -18,7 +18,7 @@ $works = Works::getWorks();
             </div>
             <div class="main-cards">
                 <?php foreach ($works as $work): ?>
-                    <a href="<?= Url::to(['site/more-info']) ?>" class="cards-b">
+                    <a href="<?= Url::to(['site/more-info', 'id' => $work->id]) ?>" class="cards-b">
                         <div class="top">
                             <img src="<?= $work->getUploadUrl('image') ?>" alt="img">
                         </div>

@@ -11,7 +11,7 @@
                 <h2 class="txt-38">
                     <?= $service->title ?>
                 </h2>
-                <img src="/img/png/Rectangle 67.jpg" alt="" class="sec-img">
+                <img src="<?= $service->getUploadUrl('image') ?>" alt="" class="sec-img">
                 <h2 class="txt-28">
                     <?= $service->short_description ?>
                 </h2>
@@ -27,38 +27,17 @@
                     <h1 class="txt-23">
                         <?= Yii::t('app', 'services') ?>
                     </h1>
-                    <a href="#" class="card-s">
-                        <div class="left">
-                            <img src="/img/png/s1.png" alt="">
-                        </div>
-                        <h1 class="txt-18">
-                            <?= $service->title ?>
-                        </h1>
-                    </a>
-                    <a href="#" class="card-s">
-                        <div class="left">
-                            <img src="/img/png/s2.png" alt="">
-                        </div>
-                        <h1 class="txt-18">
-                            <?= $service->title ?>
-                        </h1>
-                    </a>
-                    <a href="#" class="card-s">
-                        <div class="left">
-                            <img src="/img/png/s3.png" alt="">
-                        </div>
-                        <h1 class="txt-18">
-                            <?= $service->title ?>
-                        </h1>
-                    </a>
-                    <a href="#" class="card-s">
-                        <div class="left">
-                            <img src="/img/png/s5.png" alt="">
-                        </div>
-                        <h1 class="txt-18">
-                            <?= $service->title ?>
-                        </h1>
-                    </a>
+                    <?php foreach ($allService as $services): ?>
+                        <a href="<?= \yii\helpers\Url::to(['site/services', 'id' => $services->id]) ?>) ?>"
+                           class="card-s">
+                            <div class="left">
+                                <img src="/img/png/s1.png" alt="">
+                            </div>
+                            <h1 class="txt-18">
+                                <?= $services->title ?>
+                            </h1>
+                        </a>
+                    <?php endforeach; ?>
                 </div>
                 <div class="cards-blog bottom-blog ab">
                     <h1 class="txt-23">

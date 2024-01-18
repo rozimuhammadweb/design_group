@@ -2,8 +2,7 @@
 <div class="bg-p"></div>
 <div class="bg-m"></div>
 <!-- //siz-royhatdan otdingiz -->
-
-<div class="modal-last modal-web ">
+<div class="modal-last modal-web" id="model-last">
     <div class="sucsess">
         <svg width="64" height="43" viewBox="0 0 64 43" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -21,8 +20,6 @@
 
     <button class="back-btn back txt-16"><?= Yii::t('app', 'close') ?></button>
 </div>
-
-<!-- //siz-royhatdan otdingiz -->
 <?php
 
 
@@ -46,14 +43,51 @@ $model = new InboxData();
         <h1 class="txt-38">
             <?= Yii::t('app', 'consultation') ?>
         </h1>
-
-        <?php $form = ActiveForm::begin(['action' => ['consultation']]); ?>
-
+        <?php $form = ActiveForm::begin(['id' => 'consultation-form', 'action' => ['consultation']]); ?>
         <?= $form->field($model, 'name')->textInput(['class' => 'input txt-16'])->label(Yii::t('app', 'name')) ?>
         <?= $form->field($model, 'number')->widget(MaskedInput::class, ['mask' => '99-999-99-99',])->label(Yii::t('app', 'number')) ?>
-
         <button type="submit" class="btn-glavni txt-18 sucs"><?= Yii::t('app', 'send') ?></button>
 
         <?php ActiveForm::end(); ?>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#consultation-form').on('beforeSubmit', function (e) {
+            e.preventDefault();
+
+            var nameInput = $('#inboxdata-name').val();
+            var numberInput = $('#inboxdata-number').val();
+
+            if (!nameInput || !numberInput) {
+                alert('Please fill in all the required fields.');
+                return;
+            }
+            var formData = $(this).serialize();
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: formData,
+                success: function (response) {
+                    console.log(response);
+                    $('.modal-last').show();
+                },
+                error: function (response) {
+                    console.log(response.responseText);
+                    var errors;
+                    try {
+                        errors = JSON.parse(response.responseText);
+                    } catch (e) {
+                        alert('error');
+                        return;
+                    }
+                    $('#error-container').html(errors.join('<br>'));
+                    $('.modal-last').hide();
+                    alert('Please fill in all the required fields.');
+                }
+            });
+        });
+    });
+</script>
+
+

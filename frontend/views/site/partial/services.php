@@ -4,7 +4,7 @@ use common\models\Services;
 use yii\helpers\Url;
 
 
-$service = Services::find()->andWhere(['status' => Services::STATUS_ACTIVE])->orderBy('id DESC')->one();
+$services = Services::find()->andWhere(['status' => Services::STATUS_ACTIVE])->orderBy('id DESC')->all();
 
 ?>
 <div class="slider-page ab ">
@@ -17,26 +17,18 @@ $service = Services::find()->andWhere(['status' => Services::STATUS_ACTIVE])->or
             </div>
             <div class="swiper slider-first my-swww">
                 <div class="swiper-wrapper">
-                    <a href="<?= Url::to(['site/services']) ?>" class="swiper-slide card-s">
+                    <?php foreach ($services  as $service): ?>
+                    <a href="<?= Url::to(['site/services', 'id' => $service->id]) ?>" class="swiper-slide card-s">
                         <div class="top">
                             <div class="top-in">
                                 <img src="img/png/s1.png" alt="">
+<!--                                <img src="--><?php //= $service->getUploadUrl('image') ?><!--" alt="">-->
                             </div>
                         </div>
                         <p class="bottom txt-28">
                             <?= $service->title ?>
                         </p>
-
-                    </a><a href="<?= Url::to(['site/services']) ?>" class="swiper-slide card-s">
-                        <div class="top">
-                            <div class="top-in">
-                                <img src="img/png/s1.png" alt="">
-                            </div>
-                        </div>
-                        <p class="bottom txt-28">
-                            <?= $service->title ?>
-                        </p>
-                    </a>
+                        <?php endforeach; ?>
                 </div>
             </div>
         </div>

@@ -23,7 +23,7 @@
                     <?= Yii::t('app', 'all-services') ?>
                 </a>
             </div>
-            <a href="work.html" class="glavni-blog ab4">
+            <a href="" class="glavni-blog ab4">
                 <div class="bg-img"></div>
                 <img src="img/png/img-gl.png" alt="" class="right-img">
                 <div class="sec-r">

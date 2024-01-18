@@ -137,15 +137,21 @@ class SiteController extends Controller
     public function actionAbout()
     {
         $about = About::find()->andWhere(['status' => About::STATUS_ACTIVE])->orderBy('id DESC')->one();
-        $services = Services::find()->andWhere(['status' => Services::STATUS_ACTIVE])->all();
+        $services = Services::getServices();
         return $this->render('about', ['about' => $about, 'services' => $services]);
     }
 
-    public function actionServices()
+    public function actionServices($id)
     {
-        $service = Services::find()->andWhere(['status' => Services::STATUS_ACTIVE])->one();
-        return $this->render('services', ['service' => $service]);
+        $service = Services::findOne($id);
+        $allService = Services::getServices();
+        if ($service === null) {
+            throw new NotFoundHttpException('The requested service does not exist.');
+        }
+
+        return $this->render('services', ['service' => $service, 'allService' => $allService]);
     }
+
 
     public function actionWorks()
     {
@@ -163,9 +169,9 @@ class SiteController extends Controller
         return $this->render('services-view', ['services' => $services]);
     }
 
-    public function actionMoreInfo()
+    public function actionMoreInfo($id)
     {
-        $work = Works::find()->andWhere(['status' => Works::STATUS_ACTIVE])->one();
+        $work = Works::findOne($id);
         return $this->render('more-info', ['work' => $work]);
     }
 

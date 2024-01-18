@@ -1,5 +1,7 @@
 <?php
+
 use common\models\WhyUs;
+
 $why_us = WhyUs::find()->andWhere(['status' => WhyUs::STATUS_ACTIVE])->all();
 ?>
 
@@ -20,71 +22,16 @@ $why_us = WhyUs::find()->andWhere(['status' => WhyUs::STATUS_ACTIVE])->all();
                         </p>
                     </div>
                     <div class="bottom-cards">
-                        <div class="card-r">
-                            <div class="top">
-                                <img src="img/png/an1.png" alt="">
+                        <?php foreach ($why->getBehavior('galleryBehavior')->getImages() as $image): ?>
+                            <div class="card-r">
+                                <div class="top">
+                                    <img src="<?= $image->getUrl('medium') ?>" alt="">
+                                </div>
+                                <p class="txt-20">
+                                   <?= $image->name ?>
+                                </p>
                             </div>
-                            <p class="txt-20">
-                                Высокое качество
-                            </p>
-                        </div>
-                        <div class="card-r">
-                            <div class="top">
-                                <img src="img/png/an3.png" alt="">
-                            </div>
-                            <p class="txt-20">
-                                Высокое качество
-                            </p>
-                        </div>
-                        <div class="card-r">
-                            <div class="top">
-                                <img src="img/png/an3.png" alt="">
-                            </div>
-                            <p class="txt-20">
-                                Высокое качество
-                            </p>
-                        </div>
-
-                        <div class="card-r">
-                            <div class="top">
-                                <img src="img/png/an4.png" alt="">
-                            </div>
-                            <p class="txt-20">
-                                Высокое качество
-                            </p>
-                        </div>
-                        <div class="card-r">
-                            <div class="top">
-                                <img src="img/png/an5.png" alt="">
-                            </div>
-                            <p class="txt-20">
-                                Высокое качество
-                            </p>
-                        </div>
-                        <div class="card-r">
-                            <div class="top">
-                                <img src="img/png/an6.png" alt="">
-                            </div>
-                            <p class="txt-20">
-                                Высокое качество
-                            </p>
-                        </div>
-                        <div class="card-r">
-                            <div class="top">
-                                <img src="img/png/an7.png" alt="">
-                            </div>
-                            <p class="txt-20">
-                                Высокое качество
-                            </p>
-                        </div>
-                        <div class="card-r">
-                            <div class="top">
-                                <img src="img/png/an8.png" alt="">
-                            </div>
-                            <p class="txt-20">
-                                Высокое качество
-                            </p>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 <?php endforeach; ?>
             </div>

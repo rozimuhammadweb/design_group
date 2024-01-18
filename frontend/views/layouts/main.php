@@ -4,11 +4,11 @@
 
 /** @var string $content */
 
+use backend\modules\menumanager\models\Menu;
 use common\models\Settings;
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
 use yii\helpers\Html;
-use backend\modules\menumanager\models\Menu;
 
 AppAsset::register($this);
 
@@ -29,13 +29,13 @@ $menus = $mainMenus->activeSubMenus;
     </head>
     <body class="d-flex flex-column h-100">
     <?php $this->beginBody() ?>
-    <?= $this->render('modal') ?>
-    <?= $this->render('header', ['setting' => $setting,'menus'=>$menus]) ?>
+    <?= $this->render('header', ['setting' => $setting, 'menus' => $menus]) ?>
     <main role="main" class="flex-shrink-0">
         <?= Alert::widget() ?>
         <?= $content ?>
     </main>
-    <?= $this->render('footer', ['setting' => $setting,'menus'=>$menus]) ?>
+    <?= $this->render('footer', ['setting' => $setting, 'menus' => $menus]) ?>
+    <?= $this->render('modal') ?>
     <?php $this->endBody() ?>
     </body>
     </html>
