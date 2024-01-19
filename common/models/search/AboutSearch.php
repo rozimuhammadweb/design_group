@@ -67,7 +67,7 @@ class AboutSearch extends About
             'created_at' => $this->created_at,
             'updated_by' => $this->updated_by,
             'updated_at' => $this->updated_at,
-        ])->andFilterWhere(['like', 'title', $this->title])
+        ])->andFilterWhere(['like', ' ', $this->title])
         ->andFilterWhere(['like', 'short_description', $this->short_description])
         ->andFilterWhere(['like', 'description', $this->description]);
 

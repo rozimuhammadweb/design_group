@@ -102,7 +102,7 @@ $settings = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->a
                             <h1 class="txt-38 top"> <?= Yii::t('app', 'questions') ?></h1>
                             <?php $form = ActiveForm::begin(['action' => ['consultation']]); ?>
                             <label for="i1" class="txt-16 label"> <?= Yii::t('app', 'name') ?></label>
-                            <?= $form->field($model, 'name', ['template' => "{input}\n{hint}\n{error}"])->textInput(['class' => 'input txt-16'])->label(false) ?>
+                            <?= $form->field($model, 'name')->textInput(['class' => 'input txt-16'])->label(false) ?>
                             <label for="i2" class="txt-16 label"><?= Yii::t('app', 'number') ?></label>
                             <?= $form->field($model, 'number')->textInput(['class' => 'input txt-16'])->label(false) ?>
                             <label for="i4" class="txt-16 label"><?= Yii::t('app', 'questions') ?></label>
@@ -116,6 +116,30 @@ $settings = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->a
         </div>
     </div>
 </div>
+<?php
+$js = <<< JS
+$(document).on('submit', '#w0', function (e) {
+    e.preventDefault();
+    var formData = $(this).serialize();
+    $.ajax({
+        type: 'POST',
+        url: $(this).attr('action'),
+        data: formData,
+        success: function (response) {
+            if (response.success) {
+                $('#inboxdata-name').val('');
+                $('#inboxdata-number').val('');
+                $(".modal-first").removeClass("active");
+                $(".modal-last").addClass("active");
+            } else {
+                alert('Maydonlarni to\'ldirilish shart!');
+            }
+        },
+    });
+});
+JS;
 
+$this->registerJs($js);
+?>
 
     

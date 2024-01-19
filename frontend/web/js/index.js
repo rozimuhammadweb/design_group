@@ -17,14 +17,14 @@ $(".menu-h").click(function () {
   $(".menu-l").addClass("active");
   $(".bg-p").addClass("active");
 });
-$(".sucs").click(function () {
-  $(".menu-l").removeClass("active");
-  $(".modal-last").addClass("active");
-  $(".bg-p").removeClass("active");
-
-  $(".modal-first").removeClass("active");
-  $(".bg-m").addClass("active");
-});
+// $(".sucs").click(function () {
+//   $(".menu-l").removeClass("active");
+//   $(".modal-last").addClass("active");
+//   $(".bg-p").removeClass("active");
+//
+//   $(".modal-first").removeClass("active");
+//   $(".bg-m").addClass("active");
+// });
 $(".konsul").click(function () {
   $(".menu-l").removeClass("active");
   $(".modal-first").addClass("active");

@@ -33,7 +33,6 @@ $rents = Rent::getRent();
                                 <?= $item->title ?> <strong>  <?= $item->cost ?> / <?= $rent->type ?></strong>
                             </p>
                         <?php endforeach; ?>
-
                     </div>
                 <?php endforeach; ?>
             </div>

@@ -102,7 +102,6 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
         return $this->goHome();
     }
 
@@ -178,19 +177,20 @@ class SiteController extends Controller
     public function actionConsultation()
     {
         $model = new InboxData();
-
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->save()) {
-                Yii::$app->session->setFlash('success', 'Мы свяжемся с вами в ближайшее врем!');
-                return $this->redirect(['/']);
-            } else {
-                Yii::$app->session->setFlash('error', 'Ошибка при заполнении формы.');
-            }
+        $result = [];
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
+            $result = [
+                'success' => true,
+                'message' => "Ma'lumot saqlandi"
+            ];
+            return $this->asJson($result);
         } else {
-            Yii::$app->session->setFlash('error', 'Ошибка при заполнении формы.');
+            $result = [
+                'success' => false,
+                'message' => $model->getErrors()
+            ];
+            return $this->asJson($result);
         }
-
-        return $this->redirect(['/']);
     }
 
     /**
