@@ -27,13 +27,11 @@ $menus = $mainMenus->activeSubMenus;
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
-    <body class="d-flex flex-column h-100">
+    <body >
     <?php $this->beginBody() ?>
     <?= $this->render('header', ['setting' => $setting, 'menus' => $menus]) ?>
-    <main role="main" class="flex-shrink-0">
         <?= Alert::widget() ?>
         <?= $content ?>
-    </main>
     <?= $this->render('footer', ['setting' => $setting, 'menus' => $menus]) ?>
     <?= $this->render('modal') ?>
     <?php $this->endBody() ?>

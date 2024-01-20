@@ -4,9 +4,10 @@ use app\models\InboxData;
 use common\models\Settings;
 use common\models\UserData;
 use yii\widgets\ActiveForm;
+use yii\widgets\MaskedInput;
 
 $settings = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->all();
-
+$model = new InboxData();
 ?>
 <!-- //main-page -->
 
@@ -94,20 +95,24 @@ $settings = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->a
                     </div>
                 </div>
                 <div class="bottom-c ab">
-                    <?php
-                    $model = new InboxData();
-                    ?>
+
                     <div class="bottom-c ab">
                         <div class="right">
                             <h1 class="txt-38 top"> <?= Yii::t('app', 'questions') ?></h1>
-                            <?php $form = ActiveForm::begin(['action' => ['consultation']]); ?>
+                            <?php $form = ActiveForm::begin(['id' => 'consultation-form', 'action' => ['consultation']]); ?>
                             <label for="i1" class="txt-16 label"> <?= Yii::t('app', 'name') ?></label>
                             <?= $form->field($model, 'name')->textInput(['class' => 'input txt-16'])->label(false) ?>
                             <label for="i2" class="txt-16 label"><?= Yii::t('app', 'number') ?></label>
-                            <?= $form->field($model, 'number')->textInput(['class' => 'input txt-16'])->label(false) ?>
+                            <?= $form->field($model, 'number')->widget(MaskedInput::class, [
+                                'mask' => '\+\9\9\8 99 999 99 99',
+                                'options' => [
+                                    'minlength' => 17,
+                                    'autofocus' => true
+                                ]
+                            ])->label(false); ?>
                             <label for="i4" class="txt-16 label"><?= Yii::t('app', 'questions') ?></label>
                             <?= $form->field($model, 'comment')->textarea(['class' => 'input txt-16', 'rows' => 7, 'placeholder' => '...'])->label(false) ?>
-                            <button type="submit" class="btn-glavni txt-18 sucs"><?= Yii::t('app', 'send')?></button>
+                            <button type="submit" class="btn-glavni txt-18 sucs"><?= Yii::t('app', 'send') ?></button>
                             <?php ActiveForm::end() ?>
                         </div>
                     </div>
@@ -118,13 +123,14 @@ $settings = Settings::find()->andWhere(['status' => Settings::STATUS_ACTIVE])->a
 </div>
 <?php
 $js = <<< JS
-$(document).on('submit', '#w0', function (e) {
+ $(document).on('submit', '#consultation-form', function (e) {
     e.preventDefault();
-    var formData = $(this).serialize();
+    var form = $(this);
+
     $.ajax({
         type: 'POST',
-        url: $(this).attr('action'),
-        data: formData,
+        url: form.attr('action'),
+        data: form.serialize(),
         success: function (response) {
             if (response.success) {
                 $('#inboxdata-name').val('');
@@ -132,11 +138,14 @@ $(document).on('submit', '#w0', function (e) {
                 $(".modal-first").removeClass("active");
                 $(".modal-last").addClass("active");
             } else {
-                alert('Maydonlarni to\'ldirilish shart!');
+                // Handle validation errors
+                form.yiiActiveForm('updateMessages', response.message, true);
             }
         },
     });
 });
+
+
 JS;
 
 $this->registerJs($js);

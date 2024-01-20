@@ -41,8 +41,13 @@ $model = new InboxData();
         </h1>
         <?php $form = ActiveForm::begin(['id' => 'consultation-form', 'action' => ['consultation']]); ?>
         <?= $form->field($model, 'name')->textInput(['class' => 'input', 'id' => 'inboxdata-name'])->label(Yii::t('app', 'name')) ?>
-        <?= $form->field($model, 'number')->widget(MaskedInput::class, ['mask' => '99-999-99-99', 'id' => 'inboxdata-number'])->label(Yii::t('app', 'number')) ?>
-
+        <?= $form->field($model, 'number')->widget(MaskedInput::class, [
+            'mask' => '\+\9\9\8 99 999 99 99',
+            'options' => [
+                'minlength' => 17,
+                'autofocus' =>false
+            ]
+        ])->label(false); ?>
         <button type="submit" class="btn-glavni txt-18 sucs test"><?= Yii::t('app', 'send') ?></button>
 
         <?php ActiveForm::end(); ?>
@@ -64,14 +69,11 @@ $js = <<< JS
                 $(".modal-first").removeClass("active");
                 $(".modal-last").addClass("active");
             } else {
-                alert('Maydonlarni to\'ldirilish shart!');
+                console.log(response)
             }
         },
     });
 });
-
-   
-
 JS;
 $this->registerJs($js)
 ?>

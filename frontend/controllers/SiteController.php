@@ -178,19 +178,20 @@ class SiteController extends Controller
     {
         $model = new InboxData();
         $result = [];
+
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
             $result = [
                 'success' => true,
                 'message' => "Ma'lumot saqlandi"
             ];
-            return $this->asJson($result);
         } else {
             $result = [
                 'success' => false,
                 'message' => $model->getErrors()
             ];
-            return $this->asJson($result);
         }
+
+        return $this->asJson($result);
     }
 
     /**

@@ -1,7 +1,6 @@
 <?php
 use common\models\Rent;
 $rents = Rent::getRent();
-
 ?>
 <div class="purches ab">
     <div class="my-container">

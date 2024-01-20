@@ -30,7 +30,8 @@ class InboxData extends \yii\db\ActiveRecord
             [['name', 'number'], 'required'],
             [['comment'], 'string'],
             [['created_at'], 'integer'],
-            [['name', 'number'], 'string', 'max' => 255],
+            [['name'], 'string', 'max' => 55],
+            ['number', 'match', 'pattern' => '/\+[9][9][8] [389][013789] [0-9][0-9][0-9] [0-9][0-9] [0-9][0-9]/'],
         ];
     }
 

@@ -28,6 +28,7 @@ $services = Services::find()->andWhere(['status' => Services::STATUS_ACTIVE])->o
                         <p class="bottom txt-28">
                             <?= $service->title ?>
                         </p>
+                    </a>
                         <?php endforeach; ?>
                 </div>
             </div>
