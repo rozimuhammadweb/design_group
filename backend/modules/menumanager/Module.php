@@ -29,7 +29,6 @@ class Module extends \yii\base\Module
         return [
             'site/service-view' => 'Xizmatlar',
             'site/about' => 'Biz haqimizda',
-            'site/works' => "Ishlar",
             'site/gallery' => "Galleriya",
             'site/contact' => "Bog'lanish",
 

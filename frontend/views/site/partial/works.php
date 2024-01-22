@@ -13,7 +13,7 @@ $works = Works::getWorks();
         <div class="servise-in">
             <div class="top">
                 <h1 class="txt-38"><?= Yii::t('app', 'works') ?></h1>
-                <a href="<?= Url::to(['site/service-view']) ?>"
+                <a href="<?= Url::to(['site/more-info']) ?>"
                    class="back-btn txt-18"><?= Yii::t('app', 'details') ?></a>
             </div>
             <div class="main-cards">

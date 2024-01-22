@@ -16,7 +16,7 @@ return [
     'bootstrap' => ['log'],
     'language' => 'uz',
     'modules' => [
-        'treemanager' =>  [
+        'treemanager' => [
             'class' => '\kartik\tree\Module',
             // other module settings, refer detailed documentation
         ],
@@ -25,7 +25,7 @@ return [
         ],
         'translate-manager' => [
             'class' => 'wokster\translationmanager\TranslationManager',
-            'languages' => ['en','ru','uz'],
+            'languages' => ['en', 'ru', 'uz'],
         ],
     ],
     'components' => [
@@ -50,6 +50,11 @@ return [
                 ],
             ],
         ],
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'nullDisplay' => '',
+        ],
+
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],

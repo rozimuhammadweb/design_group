@@ -171,7 +171,8 @@ class SiteController extends Controller
     public function actionMoreInfo($id)
     {
         $work = Works::findOne($id);
-        return $this->render('more-info', ['work' => $work]);
+        $allService = Services::getServices();
+        return $this->render('more-info', ['work' => $work, 'allService' => $allService]);
     }
 
     public function actionConsultation()
