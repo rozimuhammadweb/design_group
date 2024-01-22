@@ -109,16 +109,9 @@ class TranslationController extends Controller
     protected function generateLanguageFiles($id)
     {
         $translation = Translation::findOne($id);
-
         if ($translation !== null) {
             $fileName = $translation->category;
-            $translationsArray = [$translation->key => $translation->value];
-
-            echo "<pre>";
-            print_r($translationsArray);
-            echo "</pre>";
-            exit();
-            foreach (['uz', 'ru', 'en'] as $language) {
+            foreach (Yii::$app->params['languages'] as $language) {
                 $directoryPath = Yii::getAlias("@frontend/language/{$language}");
                 $filePath = "{$directoryPath}/{$fileName}.php";
 
@@ -131,6 +124,7 @@ class TranslationController extends Controller
                 if (file_exists($filePath)) {
                     $existingTranslations = require($filePath);
                 }
+                $translationsArray = [$translation->key => $translation->value[$language]];
 
                 $translationsArray = array_merge($existingTranslations, $translationsArray);
 
@@ -138,7 +132,6 @@ class TranslationController extends Controller
             }
         }
     }
-
 
 
     /**
