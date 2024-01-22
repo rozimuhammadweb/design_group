@@ -1,38 +1,59 @@
 <?php
-return [
-    //button
-    'all-services' => 'All services',
-    'design' => 'Design development and corporate identity',
-    'send' => 'Send',
-    'consultation' => 'Consultation',
-    'details' => 'More details',
-    'close' => 'Close',
-    //modals
-    'order' => 'Order Service',
-    'send_success' => 'Successfully sent!',
-    'call' => 'Operators will contact you soon!',
-    'finished' => 'Successful projects',
-    'clients' => 'Regular customers',
-    'quality' => 'Quality services',
-    'services' => 'Our services',
-    'list' => 'Price list',
-    'download' => 'Download price list .pdf',
-    'download1' => 'Download price list .doc',
-    'main-title' => 'Production and installation of outdoor advertising',
-    'main-description' => 'We provide a wide range of services in advertising and production of advertising media. We cooperate with leading equipment suppliers. We have our own advertising structures and LED screens in the region',
-    'works' => 'Our works',
-    'developed' => 'Developed by',
-    'gallery' => 'Gallery',
-    //contact
-    'connect' => 'Connect with us',
-    'connect-title' => 'We will call you back within 24 hours. Thank you for contacting us',
-    'address' => 'Address',
-    'number' => 'Phone Number',
-    'working_time' => 'Working hours',
-    'email' => 'Email account',
-    'questions' => 'Questions or suggestions',
-    'name' => 'Name',
-    'rent' => 'Structure Rental',
-    'rent-title' => 'We have shown you an approximate amount for basic services. The pricing category for all services can be individual based on client requirements.',
-];
-?>
+
+return array (
+  'all-services' => 'Barcha xizmatlar',
+  'design' => 'Dizayn rivojlanishi va korporativ identifikatsiya',
+  'send' => 'Yuborish',
+  'consultation' => 'Maslahat',
+  'details' => 'Batafsil',
+  'close' => 'Yopish',
+  'order' => 'Buyurtma berish',
+  'send_success' => 'Muvaffaqiyatli yuborildi!',
+  'call' => 'Operatorlar tez orada siz bilan bog`lanadilar!',
+  'finished' => 'Muvaffaqiyatli loyihalar',
+  'clients' => 'Doimiy mijozlar',
+  'quality' => 'Sifatli xizmatlar',
+  'services' => 'Bizning xizmatlarimiz',
+  'list' => 'Narx ro`yxati',
+  'download' => 'Narx ro`yxatini .pdf formatda yuklab oling',
+  'download1' => 'Narx ro`yxatini .doc formatda yuklab oling',
+  'main-title' => 'Havo reklama tayyorlash va o`rnatish',
+  'main-description' => 'Biz reklama va reklama vositalari ishlab chiqarish sohasida keng xizmatlar taklif qilamiz. Biz etakchi jihoz taminotchilari bilan hamkorlik qilamiz. Hududimizda o`z reklama konstruktorlarimiz va LED ekranlarimiz bor',
+  'works' => 'Bizning ishlarimiz',
+  'developed' => 'Rivojlangan',
+  'gallery' => 'Galereya',
+  'connect' => 'Biz bilan bog\'laning',
+  'connect-title' => '24 soat ichida sizga qaytaramiz. Biz bilan bog\'laningiz uchun rahmat',
+  'address' => 'Manzil',
+  'number' => 'Telefon raqami',
+  'working_time' => 'Ish vaqtlari',
+  'email' => 'Elektron pochta',
+  'questions' => 'Savollar yoki takliflar',
+  'name' => 'Ism',
+  'rent' => 'Аренда конструкции',
+  'rent-title' => 'Мы вам показали примерную сумму основных услуг. Ценовая категория всех услуг может быть индивидуальной от требований клиента',
+  'saveddd' => 
+  array (
+    'uz' => 'saqlash',
+    'ru' => 'Сохранить ',
+    'en' => 'Save',
+  ),
+  'sdfds' => 
+  array (
+    'uz' => 'dfsd',
+    'ru' => 'sdfsd',
+    'en' => 'sd',
+  ),
+  'Mollit dicta et deleniti in voluptatibus optio vero vitae eaque a error eius veniam labore dolore eveniet ut' => 
+  array (
+    'uz' => 'Tempor quia laboris ',
+    'ru' => 'Reiciendis reprehend',
+    'en' => 'Voluptates quidem co',
+  ),
+  'app' => 
+  array (
+    'uz' => 'Ab quae molestiae di11111111',
+    'ru' => 'Dignissimos nihil do',
+    'en' => 'Autem sed consectetu',
+  ),
+);

@@ -47,6 +47,7 @@ class Translation extends ActiveRecord
             'category' => 'Category',
         ];
     }
+
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
@@ -57,6 +58,7 @@ class Translation extends ActiveRecord
         }
         return false;
     }
+
 
     public function afterFind()
     {
